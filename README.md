@@ -1,6 +1,12 @@
-Bell Integrator пример для учебного задания java
+Bell Integrator выполнение учебного задания java 
 ======================
-Репозиторий
+Автор
+-
+Илья Мослов (ilya_moslov@mail.ru)
+
+
+
+Репозиторий шаблона
 -
 git - https://github.com/azEsm/empty_project
 
