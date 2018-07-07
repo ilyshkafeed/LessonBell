@@ -28,6 +28,7 @@ public class Application {
         app.run(args);
     }
 
+
     @Bean
     public TaskExecutor controllerPool() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
