@@ -28,7 +28,6 @@ public class Application {
         app.run(args);
     }
 
-
     @Bean
     public TaskExecutor controllerPool() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
@@ -51,6 +50,16 @@ public class Application {
                 .apiInfo(apiInfo())
                 .select()
                 .paths(regex("/person.*"))
+                .build();
+    }
+
+    @Bean
+    public Docket organizationApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("organization")
+                .apiInfo(apiInfo())
+                .select()
+                .paths(regex("/organization.*"))
                 .build();
     }
 
