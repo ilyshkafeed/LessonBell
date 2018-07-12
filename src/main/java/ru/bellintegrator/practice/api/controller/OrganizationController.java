@@ -21,15 +21,16 @@ public class OrganizationController {
 
     }
 
-    @ApiOperation(value = "getOrganization", nickname = "getOrganization", httpMethod = "post")
+    @ApiOperation(value = "getOrganization", nickname = "getOrganization", httpMethod = "POST")
     @PostMapping("/list")
     public List<ListView> persons(@RequestBody ListView param) {
         return Collections.emptyList();
     }
 
-    @ApiOperation(value = "getOrganization", nickname = "getOrganization", httpMethod = "get")
+
+    @ApiOperation(value = "getOrganization", nickname = "getOrganization", httpMethod = "GET")
     @GetMapping("/{id}")
-    public List<OrganizationView> persons(@RequestBody int id) {
+    public List<OrganizationView> persons(@PathVariable long id) {
         return Collections.emptyList();
     }
 
