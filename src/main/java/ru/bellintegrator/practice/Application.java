@@ -56,10 +56,10 @@ public class Application {
     @Bean
     public Docket organizationApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("organization")
+                .groupName("v1")
                 .apiInfo(apiInfo())
                 .select()
-                .paths(regex("/organization.*"))
+                .paths(regex("/api.*"))
                 .build();
     }
 

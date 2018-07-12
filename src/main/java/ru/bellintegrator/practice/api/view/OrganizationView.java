@@ -1,19 +1,18 @@
-package ru.bellintegrator.practice.organization.view;
+package ru.bellintegrator.practice.api.view;
 
 import io.swagger.annotations.ApiModelProperty;
 
 public class OrganizationView {
 
-    @ApiModelProperty(hidden = true)
-    public String id;
 
+    public String id;
     public String name;
     public String fullName;
     public String inn;
     public String kpp;
     public String address;
     public String phone;
-    public String isActive;
+    public boolean isActive;
 
     @Override
     public String toString() {
