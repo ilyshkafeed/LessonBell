@@ -21,19 +21,58 @@ public class OrganizationController {
 
     }
 
-    @ApiOperation(value = "getOrganization", nickname = "getOrganization", httpMethod = "POST")
+    /**
+     * Полоучить полный список компаний, позможен фильтр
+     *
+     * @param param
+     * @return {@link List}<{@link ListView}> список компаний.
+     */
+    @ApiOperation(value = "getOrganizations", nickname = "getOrganizations", httpMethod = "POST")
     @PostMapping("/list")
-    public List<ListView> persons(@RequestBody ListView param) {
+    public List<ListView> getOrganizations(@RequestBody ListView param) {
         return Collections.emptyList();
     }
 
 
+    /**
+     * Получить подробную информацию о компании.
+     *
+     * @param id id компании.
+     * @return {@link OrganizationView} С полной информацией о компании.
+     */
     @ApiOperation(value = "getOrganization", nickname = "getOrganization", httpMethod = "GET")
     @GetMapping("/{id}")
-    public List<OrganizationView> persons(@PathVariable long id) {
-        return Collections.emptyList();
+    public OrganizationView getOrganization(@PathVariable long id) {
+        return new OrganizationView();
     }
 
 
+    /**
+     * Обновить запись компании.
+     *
+     * @param updateInfo {@link OrganizationView} Новая инормация о компании.
+     * @return Статус выполнения.
+     */
+    @ApiOperation(value = "update", nickname = "update", httpMethod = "POST")
+    @GetMapping("/update")
+    public String update(@RequestBody OrganizationView updateInfo) {
+        return "{" +
+                "“result”:”success”" +
+                "}";
+    }
+
+
+    /**
+     * Сохранение переданно инормации.
+     * @param info
+     * @return
+     */
+    @ApiOperation(value = "save", nickname = "save", httpMethod = "POST")
+    @GetMapping("/save")
+    public String save(@RequestBody OrganizationView info) {
+        return "{" +
+                "“result”:”success”" +
+                "}";
+    }
 
 }
