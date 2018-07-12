@@ -3,7 +3,7 @@ package ru.bellintegrator.practice.api.view;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class ListView {
+public class OrganizationListView {
 
 
     public String name;

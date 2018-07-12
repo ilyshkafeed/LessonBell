@@ -3,7 +3,7 @@ package ru.bellintegrator.practice.api.controller;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.bellintegrator.practice.api.view.ListView;
+import ru.bellintegrator.practice.api.view.OrganizationListView;
 import ru.bellintegrator.practice.api.view.OrganizationView;
 
 import java.util.Collections;
@@ -25,11 +25,11 @@ public class OrganizationController {
      * Полоучить полный список компаний, позможен фильтр
      *
      * @param param
-     * @return {@link List}<{@link ListView}> список компаний.
+     * @return {@link List}<{@link OrganizationListView}> список компаний.
      */
     @ApiOperation(value = "getOrganizations", nickname = "getOrganizations", httpMethod = "POST")
     @PostMapping("/list")
-    public List<ListView> getOrganizations(@RequestBody ListView param) {
+    public List<OrganizationListView> getOrganizations(@RequestBody OrganizationListView param) {
         return Collections.emptyList();
     }
 
