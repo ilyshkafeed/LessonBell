@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.api.view;
+package ru.bellintegrator.practice.api.docs.view;
 
 public class DocsView {
 

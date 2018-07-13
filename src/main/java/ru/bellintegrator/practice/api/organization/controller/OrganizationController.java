@@ -1,9 +1,9 @@
-package ru.bellintegrator.practice.api.controller;
+package ru.bellintegrator.practice.api.organization.controller;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.bellintegrator.practice.api.view.OrganizationView;
+import ru.bellintegrator.practice.api.organization.view.OrganizationView;
 
 import java.util.Collections;
 import java.util.List;

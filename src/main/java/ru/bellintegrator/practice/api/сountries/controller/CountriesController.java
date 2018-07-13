@@ -1,12 +1,11 @@
-package ru.bellintegrator.practice.api.controller;
+package ru.bellintegrator.practice.api.сountries.controller;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.bellintegrator.practice.api.view.CountriesView;
-import ru.bellintegrator.practice.api.view.OfficeView;
+import ru.bellintegrator.practice.api.сountries.view.CountriesView;
 
 import java.util.Collections;
 import java.util.List;
