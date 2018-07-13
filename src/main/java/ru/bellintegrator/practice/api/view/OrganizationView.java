@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class OrganizationView {
 
 
-    public String id;
+    public long id;
     public String name;
     public String fullName;
     public String inn;

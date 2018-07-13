@@ -63,8 +63,8 @@ public class OrganizationController {
 
     /**
      * Сохранение переданно инормации.
-     * @param info
-     * @return
+     * @param info переданная информация
+     * @return Статус выполнения
      */
     @ApiOperation(value = "save", nickname = "save", httpMethod = "POST")
     @GetMapping("/save")

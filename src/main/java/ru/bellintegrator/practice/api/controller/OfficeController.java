@@ -30,6 +30,7 @@ public class OfficeController {
     @ApiOperation(value = "getOrganizations", nickname = "getOrganizations", httpMethod = "POST")
     @PostMapping("/list/{orgId}")
     public List<OfficeView> getOrganizations(@PathVariable long orgId, @RequestBody OfficeView param) {
+        param.ordId = orgId;
         return Collections.emptyList();
     }
 
@@ -48,7 +49,7 @@ public class OfficeController {
 
 
     /**
-     * Обновить запись компании.
+     * Обновить запись офиса.
      *
      * @param updateInfo {@link OrganizationView} Новая инормация о компании.
      * @return Статус выполнения.
@@ -63,10 +64,10 @@ public class OfficeController {
 
 
     /**
-     * Сохранение переданно инормации.
+     * Сохранение переданной инормации.
      *
-     * @param info
-     * @return
+     * @param info переданная информация
+     * @return статус
      */
     @ApiOperation(value = "save", nickname = "save", httpMethod = "POST")
     @GetMapping("/save")
