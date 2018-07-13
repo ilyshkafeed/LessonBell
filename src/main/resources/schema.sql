@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `doc`(
 
 CREATE TABLE IF NOT EXISTS `organization`(
   `id`                INTEGER         PRIMARY KEY AUTO_INCREMENT,
-  `name`              VARCHAR(255)    NOT NULL,
+  `name`              VARCHAR(50)    NOT NULL,
   `full_name`         VARCHAR(255)    NOT NULL,
   `inn`               VARCHAR(10)     NOT NULL,
   `kpp`               VARCHAR(9)      NOT NULL,

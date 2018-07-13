@@ -56,7 +56,7 @@ public class OrganizationController {
     @GetMapping("/update")
     public String update(@RequestBody OrganizationView updateInfo) {
         return "{" +
-                "“result”:”success”" +
+                "“result”:”SuccessView”" +
                 "}";
     }
 
@@ -70,7 +70,7 @@ public class OrganizationController {
     @GetMapping("/save")
     public String save(@RequestBody OrganizationView info) {
         return "{" +
-                "“result”:”success”" +
+                "“result”:”SuccessView”" +
                 "}";
     }
 

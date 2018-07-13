@@ -57,7 +57,7 @@ public class OfficeController {
     @GetMapping("/update")
     public String update(@RequestBody OfficeView updateInfo) {
         return "{" +
-                "“result”:”success”" +
+                "“result”:”SuccessView”" +
                 "}";
     }
 
@@ -72,7 +72,7 @@ public class OfficeController {
     @GetMapping("/save")
     public String save(@RequestBody OfficeView info) {
         return "{" +
-                "“result”:”success”" +
+                "“result”:”SuccessView”" +
                 "}";
     }
 

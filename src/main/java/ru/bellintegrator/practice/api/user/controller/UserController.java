@@ -57,7 +57,7 @@ public class UserController {
     @GetMapping("/update")
     public String update(@RequestBody UserView updateInfo) {
         return "{" +
-                "“result”:”success”" +
+                "“result”:”SuccessView”" +
                 "}";
     }
 
@@ -72,7 +72,7 @@ public class UserController {
     @GetMapping("/save")
     public String save(@RequestBody UserView info) {
         return "{" +
-                "“result”:”success”" +
+                "“result”:”SuccessView”" +
                 "}";
     }
 

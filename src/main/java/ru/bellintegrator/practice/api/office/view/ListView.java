@@ -2,7 +2,7 @@ package ru.bellintegrator.practice.api.office.view;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class OfficeView {
+public class ListView {
 
 
     public long id;
@@ -17,7 +17,7 @@ public class OfficeView {
 
     @Override
     public String toString() {
-        return "OfficeView{" +
+        return "ListView{" +
                 "id=" + id +
                 ", ordId=" + ordId +
                 ", name='" + name + '\'' +
