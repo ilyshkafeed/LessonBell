@@ -4,7 +4,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.bellintegrator.practice.api.organization.view.OrganizationView;
+import ru.bellintegrator.practice.api.organization.view.ListView;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,12 +26,15 @@ public class OrganizationController {
      * Полоучить полный список компаний, позможен фильтр
      *
      * @param param
-     * @return {@link List}<{@link OrganizationView}> список компаний.
+     * @return {@link List}<{@link ListView}> список компаний.
      */
     @ApiOperation(value = "getOrganizations", nickname = "getOrganizations", httpMethod = "POST")
     @PostMapping("/list")
-    public List<OrganizationView> getOrganizations(@RequestBody OrganizationView param) {
-        return Collections.emptyList();
+    public List<ListView> getOrganizations(@RequestBody ListView param) {
+        return Arrays.asList(
+                new ListView(1,"test",true),
+                new ListView(2,"test3",true)
+                );
     }
 
 
