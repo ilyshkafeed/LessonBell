@@ -1,14 +1,5 @@
 package ru.bellintegrator.practice.api.publicview;
 
-public class SuccessView {
-
+public class SuccessView implements StaticView {
     public String result = "success";
-
-
-    @Override
-    public String toString() {
-        return "SuccessView{" +
-                "result='" + result + '\'' +
-                '}';
-    }
 }
