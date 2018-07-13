@@ -27,9 +27,9 @@ public class CountriesController {
      *
      * @return {@link List}<{@link CountriesView}> список компаний.
      */
-    @ApiOperation(value = "getOffices", nickname = "getOffices", httpMethod = "POST")
+    @ApiOperation(value = "getCountries", nickname = "getCountries", httpMethod = "POST")
     @PostMapping("/")
-    public List<CountriesView> getOffices() {
+    public List<CountriesView> getCountries() {
         return Collections.emptyList();
     }
 

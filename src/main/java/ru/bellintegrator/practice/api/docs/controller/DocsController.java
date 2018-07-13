@@ -24,13 +24,11 @@ public class DocsController {
     /**
      * Виды документов
      *
-     * @param param
      * @return {@link List}<{@link DocsView}> список компаний.
      */
-    @ApiOperation(value = "getOffices", nickname = "getOffices", httpMethod = "POST")
-    @PostMapping("/")
-    public List<DocsView> getOffices(@PathVariable long orgId, @RequestBody OfficeView param) {
-        param.ordId = orgId;
+    @ApiOperation(value = "getDocs", nickname = "getDocs", httpMethod = "POST")
+    @PostMapping()
+    public List<DocsView> getOffices() {
         return Collections.emptyList();
     }
 
