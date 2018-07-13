@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.bellintegrator.practice.api.view.OfficeView;
-import ru.bellintegrator.practice.api.view.OrganizationView;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,9 +26,9 @@ public class OfficeController {
      * @param param
      * @return {@link List}<{@link OfficeView}> список компаний.
      */
-    @ApiOperation(value = "getOrganizations", nickname = "getOrganizations", httpMethod = "POST")
+    @ApiOperation(value = "getOffices", nickname = "getOffices", httpMethod = "POST")
     @PostMapping("/list/{orgId}")
-    public List<OfficeView> getOrganizations(@PathVariable long orgId, @RequestBody OfficeView param) {
+    public List<OfficeView> getOffices(@PathVariable long orgId, @RequestBody OfficeView param) {
         param.ordId = orgId;
         return Collections.emptyList();
     }
@@ -39,11 +38,11 @@ public class OfficeController {
      * Получить подробную информацию о офисе.
      *
      * @param id id компании.
-     * @return {@link OrganizationView} С полной информацией о компании.
+     * @return {@link OfficeView} С полной информацией о компании.
      */
-    @ApiOperation(value = "getOrganization", nickname = "getOrganization", httpMethod = "GET")
+    @ApiOperation(value = "getOffice", nickname = "getOffice", httpMethod = "GET")
     @GetMapping("/{id}")
-    public OfficeView getOrganization(@PathVariable long id) {
+    public OfficeView getOffice(@PathVariable long id) {
         return new OfficeView();
     }
 
@@ -51,12 +50,12 @@ public class OfficeController {
     /**
      * Обновить запись офиса.
      *
-     * @param updateInfo {@link OrganizationView} Новая инормация о компании.
+     * @param updateInfo {@link OfficeView} Новая инормация о компании.
      * @return Статус выполнения.
      */
     @ApiOperation(value = "update", nickname = "update", httpMethod = "POST")
     @GetMapping("/update")
-    public String update(@RequestBody OrganizationView updateInfo) {
+    public String update(@RequestBody OfficeView updateInfo) {
         return "{" +
                 "“result”:”success”" +
                 "}";
@@ -71,7 +70,7 @@ public class OfficeController {
      */
     @ApiOperation(value = "save", nickname = "save", httpMethod = "POST")
     @GetMapping("/save")
-    public String save(@RequestBody OrganizationView info) {
+    public String save(@RequestBody OfficeView info) {
         return "{" +
                 "“result”:”success”" +
                 "}";
