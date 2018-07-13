@@ -1,9 +1,12 @@
 package ru.bellintegrator.practice.api.view;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class OfficeView {
 
 
     public String id;
+    @ApiModelProperty(hidden = true)
     public String ordId;
     public String name;
 
