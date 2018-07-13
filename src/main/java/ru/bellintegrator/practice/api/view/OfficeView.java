@@ -4,6 +4,7 @@ public class OfficeView {
 
 
     public String id;
+    public String ordId;
     public String name;
 
     public String address;

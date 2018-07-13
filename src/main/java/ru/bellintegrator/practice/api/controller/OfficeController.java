@@ -22,28 +22,28 @@ public class OfficeController {
     }
 
     /**
-     * Полоучить полный список компаний, позможен фильтр
+     * Полоучить полный список офисов одной компании, позможен фильтр
      *
      * @param param
      * @return {@link List}<{@link OfficeView}> список компаний.
      */
     @ApiOperation(value = "getOrganizations", nickname = "getOrganizations", httpMethod = "POST")
     @PostMapping("/list/{orgId}")
-    public List<OfficeView> getOrganizations(@PathVariable long orgId,@RequestBody OfficeView param) {
+    public List<OfficeView> getOrganizations(@PathVariable long orgId, @RequestBody OfficeView param) {
         return Collections.emptyList();
     }
 
 
     /**
-     * Получить подробную информацию о компании.
+     * Получить подробную информацию о офисе.
      *
      * @param id id компании.
      * @return {@link OrganizationView} С полной информацией о компании.
      */
     @ApiOperation(value = "getOrganization", nickname = "getOrganization", httpMethod = "GET")
     @GetMapping("/{id}")
-    public OrganizationView getOrganization(@PathVariable long id) {
-        return new OrganizationView();
+    public OfficeView getOrganization(@PathVariable long id) {
+        return new OfficeView();
     }
 
 
@@ -64,6 +64,7 @@ public class OfficeController {
 
     /**
      * Сохранение переданно инормации.
+     *
      * @param info
      * @return
      */
