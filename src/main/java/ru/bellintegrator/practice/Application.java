@@ -43,18 +43,10 @@ public class Application {
         return sessionLocaleResolver;
     }
 
-    @Bean
-    public Docket postApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("persons")
-                .apiInfo(apiInfo())
-                .select()
-                .paths(regex("/person.*"))
-                .build();
-    }
+
 
     @Bean
-    public Docket organizationApi() {
+    public Docket postApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("v1")
                 .apiInfo(apiInfo())

@@ -1,25 +1,47 @@
-CREATE TABLE IF NOT EXISTS Person (
-    id         INTEGER  PRIMARY KEY AUTO_INCREMENT,
-    version    INTEGER NOT NULL,
-    first_name VARCHAR(50) NOT NULL,
-    age        INTEGER  NOT NULL
-);
+CREATE TABLE IF NOT EXISTS `country`(
+  `code`              SMALLINT        NOT NULL PRIMARY KEY,
+  `name`              VARCHAR(255)    NOT NULL);
 
-CREATE TABLE IF NOT EXISTS House (
-    id         INTEGER  PRIMARY KEY AUTO_INCREMENT,
-    version    INTEGER NOT NULL,
-    address    VARCHAR(50) NOT NULL
-);
+CREATE TABLE IF NOT EXISTS `doc`(
+  `code`              TINYINT         NOT NULL PRIMARY KEY,
+  `name`              VARCHAR(255)    NOT NULL);
 
-CREATE TABLE IF NOT EXISTS Person_House (
-    person_id   INTEGER  NOT NULL,
-    house_id    INTEGER  NOT NULL,
+CREATE TABLE IF NOT EXISTS `organization`(
+  `id`                INTEGER         PRIMARY KEY AUTO_INCREMENT,
+  `name`              VARCHAR(255)    NOT NULL,
+  `full_name`         VARCHAR(255)    NOT NULL,
+  `inn`               VARCHAR(10)     NOT NULL,
+  `kpp`               VARCHAR(9)      NOT NULL,
+  `address`           VARCHAR(255)    NOT NULL,
+  `phone`             VARCHAR(50)     NOT NULL DEFAULT '',
+  `is_active`         BOOL            NOT NULL DEFAULT 1);
 
-    PRIMARY KEY (person_id, house_id)
-);
+CREATE TABLE IF NOT EXISTS `office`(
+  `id`                INTEGER         PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  `organization_id`   INTEGER         NOT NULL REFERENCES `organization`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  `name`              VARCHAR(255)    NOT NULL,
+  `address`           VARCHAR(255)    NOT NULL UNIQUE,
+  `phone`             VARCHAR(50)     NOT NULL DEFAULT '',
+  `is_active`         BOOL            NOT NULL DEFAULT 1);
 
-CREATE INDEX IX_Person_House_Id ON Person_House (house_id);
-ALTER TABLE Person_House ADD FOREIGN KEY (house_id) REFERENCES House(id);
+CREATE TABLE IF NOT EXISTS `user`(
+  `id`                INTEGER         PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  `office_id`         INTEGER         NOT NULL  REFERENCES `office`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  `first_name`        VARCHAR(50)     NOT NULL,
+  `last_name`         VARCHAR(50)     NOT NULL DEFAULT '',
+  `middle_name`       VARCHAR(50)     NOT NULL DEFAULT '',
+  `position`          VARCHAR(255)    NOT NULL,
+  `doc_code`          TINYINT         REFERENCES `doc`(`code`) ON DELETE SET DEFAULT ON UPDATE CASCADE,
+  `doc_number`        VARCHAR(255)    NOT NULL DEFAULT '',
+  `doc_date`          DATE,
+  `citizenship_code`  SMALLINT        REFERENCES `country`(`code`) ON DELETE SET DEFAULT ON UPDATE CASCADE,
+  `is_identified`     BOOL            NOT NULL DEFAULT 0);
 
-CREATE INDEX IX_House_Person_Id ON Person_House (person_id);
-ALTER TABLE Person_House ADD FOREIGN KEY (person_id) REFERENCES Person(id);
+CREATE INDEX `IX_office_organization_id` ON `office`(`organization_id`);
+
+CREATE UNIQUE INDEX `UX_office_id` ON `office`(`id`);
+
+CREATE UNIQUE INDEX `UX_organization_id` ON `organization`(`id`);
+
+CREATE INDEX `UX_user_id` ON `user`(`id`);
+
