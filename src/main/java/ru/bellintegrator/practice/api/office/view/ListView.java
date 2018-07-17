@@ -17,7 +17,7 @@ public class ListView {
 
     @Override
     public String toString() {
-        return "ListView{" +
+        return "List{" +
                 "id=" + id +
                 ", ordId=" + ordId +
                 ", name='" + name + '\'' +

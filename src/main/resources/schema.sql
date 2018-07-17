@@ -1,9 +1,11 @@
 CREATE TABLE IF NOT EXISTS `country`(
-  `code`              SMALLINT        NOT NULL PRIMARY KEY,
+  `id`                INTEGER         PRIMARY KEY AUTO_INCREMENT,
+  `code`              SMALLINT        NOT NULL UNIQUE,
   `name`              VARCHAR(255)    NOT NULL);
 
 CREATE TABLE IF NOT EXISTS `doc`(
-  `code`              TINYINT         NOT NULL PRIMARY KEY,
+  `id`                INTEGER         PRIMARY KEY AUTO_INCREMENT,
+  `code`              TINYINT         NOT NULL UNIQUE,
   `name`              VARCHAR(255)    NOT NULL);
 
 CREATE TABLE IF NOT EXISTS `organization`(
