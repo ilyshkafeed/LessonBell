@@ -9,15 +9,15 @@ insert into `office` (`id`,`organization_id`, `name`, `address`, `phone`, `is_ac
   (2, 1,  'Нижегородский',  '19885 Southridge Plaza',  '+358 (811) 283-7427',  1),
   (3, 2,  'Главный',        '73 Artisan Point',        '+63 (178) 446-7799',   1);
 
-insert into `doc` (`code`, `name`) values
-  (3,   'Свидетельство о рождении'),
-  (7,   'Военный биле'),
-  (21,  'Паспорт гражданина Российской Федерации');
+insert into `doc` (`id`,`code`, `name`) values
+  (1,3,   'Свидетельство о рождении'),
+  (2,7,   'Военный биле'),
+  (3,21,  'Паспорт гражданина Российской Федерации');
 
-insert into `country` (`code`, `name`) values
-  (643, 'Российская Федерация');
+insert into `country` (`id`,`code`, `name`) values
+  (1,643, 'Российская Федерация');
 
 insert into `user` (`id`, `office_id`, `first_name`, `last_name`, `middle_name`, `position`, `doc_code`, `doc_number`, `doc_date`, `citizenship_code`, `is_identified`) VALUES
-  (1,1,'Илья',  'Мослов',   'Петрович', 'Ведущий программист', 21,  '1234 123456',  PARSEDATETIME('02/02/2001','dd/mm/yyyy'), 643, 1),
-  (2,1,'Артем', 'Сорокин',  'Людовик',  'Программист',         21,  '1234 123456',  PARSEDATETIME('02/02/2001','dd/mm/yyyy'), 643, 1),
-  (3,3,'Ваня',  'Максимов', 'Зайцевич', 'Директор',            21,  '1234 123456',  PARSEDATETIME('02/02/2001','dd/mm/yyyy'), 643, 1);
+  (1,1,'Илья',  'Мослов',   'Петрович', 'Ведущий программист', 3,  '1234 123456',  PARSEDATETIME('02/02/2001','dd/mm/yyyy'), 1, 1),
+  (2,1,'Артем', 'Сорокин',  'Людовик',  'Программист',         3,  '1234 123456',  PARSEDATETIME('02/02/2001','dd/mm/yyyy'), 1, 1),
+  (3,3,'Ваня',  'Максимов', 'Зайцевич', 'Директор',            3,  '1234 123456',  PARSEDATETIME('02/02/2001','dd/mm/yyyy'), 1, 1);

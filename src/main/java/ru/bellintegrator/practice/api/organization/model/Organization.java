@@ -4,6 +4,15 @@ import javax.persistence.*;
 
 @Entity
 public class Organization {
+    public static final String PARAM_NAME = "name";
+    public static final String PARAM_FULL_NAME = "full_name";
+    public static final String PARAM_INN = "inn";
+    public static final String PARAM_KPP = "kpp";
+    public static final String PARAM_ADDRESS = "address";
+    public static final String PARAM_PHONE = "phone";
+    public static final String PARAM_IS_ACTIVE = "is_active";
+
+
     @Id
     @GeneratedValue
     private Integer id;
@@ -11,15 +20,15 @@ public class Organization {
     /**
      * Служебное поле hibernate
      */
-    @Version
-    private Integer version;
+//    @Version
+//    private Integer version;
 
     //Поля сами за себя говорят
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, updatable = false, nullable = false)
     private String name;
 
-    @Column(length = 255, nullable = false)
-    private String full_name;
+    @Column(name = "full_name", length = 255, nullable = false)
+    private String fullName;
 
     @Column(length = 10, nullable = false)
     private String inn;
@@ -31,10 +40,10 @@ public class Organization {
     private String address;
 
     @Column(length = 50, nullable = false)
-    private String phone;
+    private String phone = "";
 
     @Column(name = "is_active", length = 50, nullable = false)
-    private boolean isActive;
+    private boolean isActive = true;
 
 //  Привер заготовки под офисы
 //    @ManyToMany(
@@ -51,15 +60,20 @@ public class Organization {
 //    private Set<House> houses;
 
 
-
-
     public Organization() {
 
     }
 
-    public Organization(String name, String full_name, String inn, String kpp, String address, String phone, boolean isActive) {
+    public Organization(Integer id, String name, boolean isActive) {
+        this.id = id;
         this.name = name;
-        this.full_name = full_name;
+        this.isActive = isActive;
+    }
+
+
+    public Organization(String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive) {
+        this.name = name;
+        this.fullName = fullName;
         this.inn = inn;
         this.kpp = kpp;
         this.address = address;
@@ -67,14 +81,15 @@ public class Organization {
         this.isActive = isActive;
     }
 
-    public Organization(String name, String full_name, String inn, String kpp, String address, String phone) {
-        this(name, full_name, inn, kpp, address, phone, true);
+    public Organization(String name, String fullName, String inn, String kpp, String address, String phone) {
+        this(name, fullName, inn, kpp, address, phone, true);
     }
 
-    public Organization(String name, String full_name, String inn, String kpp, String address) {
-        this(name, full_name, inn, kpp, address, "", true);
+    public Organization(String name, String fullName, String inn, String kpp, String address) {
+        this(name, fullName, inn, kpp, address, "", true);
     }
 
+    //getter-ы
     public Integer getId() {
         return id;
     }
@@ -83,8 +98,8 @@ public class Organization {
         return name;
     }
 
-    public String getFull_name() {
-        return full_name;
+    public String getFullName() {
+        return fullName;
     }
 
     public String getInn() {
@@ -107,12 +122,13 @@ public class Organization {
         return isActive;
     }
 
+    //setter-ы
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setInn(String inn) {
@@ -135,5 +151,17 @@ public class Organization {
         isActive = active;
     }
 
-
+    @Override
+    public String toString() {
+        return "Organization{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", inn='" + inn + '\'' +
+                ", kpp='" + kpp + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isActive=" + isActive +
+                '}';
+    }
 }

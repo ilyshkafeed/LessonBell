@@ -1,16 +1,15 @@
 package ru.bellintegrator.practice.api.organization.datain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import ru.bellintegrator.practice.api.Validation;
+import ru.bellintegrator.practice.api.exception.RequiredFieldException;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class OrganizationList implements Validation {
-
-
-
     private String inn;
     private String name;
     private Boolean active;
@@ -21,8 +20,15 @@ public class OrganizationList implements Validation {
 
     @Override
     public boolean validate() {
-        return name != null;
+        return !((name == null) || (name.length() == 0));
     }
+
+    @Override
+    public RuntimeException getValidateException() {
+        List<String> fields = (name == null || name.length() == 0) ? Collections.singletonList("name") : Collections.EMPTY_LIST;
+        return new RequiredFieldException(fields);
+    }
+
 
     public String getInn() {
         return inn;
@@ -33,16 +39,16 @@ public class OrganizationList implements Validation {
     }
 
     @JsonProperty("isActive")
-    public boolean isActive() {
+    public Boolean isActive() {
         return active;
     }
 
     @Override
     public String toString() {
         return "OrganizationList{" +
-                "inn='" + inn + '\'' +
-                ", name='" + name + '\'' +
-                ", isActive=" + active +
+                "inn='" + (inn == null ? "" : inn) + '\'' +
+                ", name='" + (name == null ? "" : name) + '\'' +
+                ", isActive=" + (active == null ? "" : active) +
                 '}';
     }
 }

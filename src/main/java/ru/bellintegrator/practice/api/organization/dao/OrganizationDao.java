@@ -15,13 +15,12 @@ public interface OrganizationDao {
     List<Organization> all();
 
     /**
-     * Получить список
+     * Получить неполный список
      *
      * @param data фильтры
      * @return
      */
-    List<Organization> getList(OrganizationList data);
-
+     List<Organization> getShortList(OrganizationList data);
     /**
      * Получить обект по id
      *

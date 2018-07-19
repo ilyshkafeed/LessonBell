@@ -1,6 +1,7 @@
 package ru.bellintegrator.practice.api.organization.service;
 
 import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
+import ru.bellintegrator.practice.api.organization.view.OrganizationListView;
 import ru.bellintegrator.practice.api.organization.view.OrganizationView;
 
 import java.util.List;
@@ -20,13 +21,13 @@ public interface  OrganizationsService {
      *
      * @return {@Person}
      */
-    List<OrganizationView> organizations();
+    List<OrganizationView> list();
 
     /**
      * Получить краткий список организаций
      *
      * @return {@Person}
      */
-    List<OrganizationList> organizationsList();
+    List<OrganizationListView> shortList(OrganizationList in);
 
 }

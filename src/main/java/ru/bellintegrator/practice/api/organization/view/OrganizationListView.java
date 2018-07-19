@@ -1,20 +1,25 @@
 package ru.bellintegrator.practice.api.organization.view;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import ru.bellintegrator.practice.api.organization.model.Organization;
 
 public class OrganizationListView {
     private int id;
     private String name;
-    private boolean isActive;
+    private Boolean isActive;
 
 
     public OrganizationListView() {
     }
 
-    public OrganizationListView(int id, String name, boolean isActive) {
-        this.id = id;
-        this.name = name;
-        this.isActive = isActive;
+    public OrganizationListView(int id, String name, Boolean isActive) {
+        setId(id);
+        setName(name);
+        setActive(isActive);
+    }
+
+    public OrganizationListView(Organization el) {
+        this(el.getId(), el.getName(), el.isActive());
     }
 
     public int getId() {
@@ -32,12 +37,13 @@ public class OrganizationListView {
     public void setName(String name) {
         this.name = name;
     }
+
     @JsonProperty("isActive")
-    public boolean isActive() {
+    public Boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 

@@ -6,25 +6,29 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
+import ru.bellintegrator.practice.api.organization.service.OrganizationsService;
 import ru.bellintegrator.practice.api.organization.view.OrganizationListView;
 import ru.bellintegrator.practice.api.organization.view.OrganizationView;
 import ru.bellintegrator.practice.api.publicview.StaticView;
 import ru.bellintegrator.practice.api.publicview.SuccessView;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+
 @RestController
 @RequestMapping(value = "/api/organization", produces = APPLICATION_JSON_VALUE)
 public class OrganizationController {
-    @Autowired
+
+    private final OrganizationsService organizationsService;
+
+
     private static final Logger LOG = LoggerFactory.getLogger(OrganizationView.class);
 
     @Autowired
-    public OrganizationController() {
-
+    public OrganizationController(OrganizationsService organizationsService) {
+        this.organizationsService = organizationsService;
     }
 
     /**
@@ -36,12 +40,7 @@ public class OrganizationController {
     @ApiOperation(value = "getOrganizations", nickname = "getOrganizations", httpMethod = "POST")
     @PostMapping("/list")
     public List<OrganizationListView> getOrganizations(@RequestBody OrganizationList param) {
-        LOG.info(param.toString());
-        return Arrays.asList(
-                new OrganizationListView(1, param.getName(), param.isActive()),
-                new OrganizationListView(2, param.getInn(), true)
-        );
-
+        return organizationsService.shortList(param);
     }
 
 

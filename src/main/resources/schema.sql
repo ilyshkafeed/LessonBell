@@ -33,10 +33,10 @@ CREATE TABLE IF NOT EXISTS `user`(
   `last_name`         VARCHAR(50)     NOT NULL DEFAULT '',
   `middle_name`       VARCHAR(50)     NOT NULL DEFAULT '',
   `position`          VARCHAR(255)    NOT NULL,
-  `doc_code`          TINYINT         REFERENCES `doc`(`code`) ON DELETE SET DEFAULT ON UPDATE CASCADE,
+  `doc_code`          INTEGER         REFERENCES `doc`(`id`) ON DELETE SET DEFAULT ON UPDATE CASCADE,
   `doc_number`        VARCHAR(255)    NOT NULL DEFAULT '',
   `doc_date`          DATE,
-  `citizenship_code`  SMALLINT        REFERENCES `country`(`code`) ON DELETE SET DEFAULT ON UPDATE CASCADE,
+  `citizenship_code`  INTEGER        REFERENCES `country`(`id`) ON DELETE SET DEFAULT ON UPDATE CASCADE,
   `is_identified`     BOOL            NOT NULL DEFAULT 0);
 
 CREATE INDEX `IX_office_organization_id` ON `office`(`organization_id`);
