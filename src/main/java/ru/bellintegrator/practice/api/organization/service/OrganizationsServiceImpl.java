@@ -4,13 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.bellintegrator.practice.api.exception.RequiredFieldException;
 import ru.bellintegrator.practice.api.organization.dao.OrganizationDao;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
+import ru.bellintegrator.practice.api.organization.model.Organization;
 import ru.bellintegrator.practice.api.organization.view.OrganizationListView;
 import ru.bellintegrator.practice.api.organization.view.OrganizationView;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +20,6 @@ import java.util.stream.Collectors;
 public class OrganizationsServiceImpl implements OrganizationsService {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final OrganizationDao dao;
-
 
     @Autowired
     public OrganizationsServiceImpl(OrganizationDao dao) {
@@ -55,6 +53,11 @@ public class OrganizationsServiceImpl implements OrganizationsService {
             throw in.getValidateException();
         }
         return dao.getShortList(in).stream().map(OrganizationListView::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public OrganizationView get(int id) {
+        return new OrganizationView(dao.get(id));
     }
 
 

@@ -30,4 +30,6 @@ public interface  OrganizationsService {
      */
     List<OrganizationListView> shortList(OrganizationList in);
 
+
+    OrganizationView get(int id);
 }

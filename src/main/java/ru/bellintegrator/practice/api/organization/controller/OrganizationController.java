@@ -65,8 +65,8 @@ public class OrganizationController {
     })
     @ApiOperation(value = "getOrganization", nickname = "getOrganization", httpMethod = "GET")
     @GetMapping("/{id}")
-    public OrganizationView getOrganization(@PathVariable long id) {
-        return new OrganizationView();
+    public OrganizationView getOrganization(@PathVariable int id) {
+        return organizationsService.get(id);
     }
 
 

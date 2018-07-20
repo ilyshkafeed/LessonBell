@@ -14,6 +14,7 @@ public interface OrganizationDao {
      */
     List<Organization> all();
 
+
     /**
      * Получить неполный список
      *

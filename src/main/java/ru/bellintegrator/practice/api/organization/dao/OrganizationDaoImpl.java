@@ -37,37 +37,54 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
     @Override
     public List<Organization> getShortList(OrganizationList data) {
-
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Organization> cq = cb.createQuery(Organization.class);
-
-
         Root<Organization> orgRoot = cq.from(Organization.class);
-
-        // SELECT Organization
+        // SELECT id, name, is_active
         cq.multiselect(
                 orgRoot.get(Organization_.id),
                 orgRoot.get(Organization_.name),
                 orgRoot.get(Organization_.isActive)
         );
 
-
+        // WHERE lower(name) like :%name%:
         cq.where(cb.like(cb.lower(orgRoot.get(Organization_.name)), "%" + data.getName().toLowerCase() + "%"));
+
+        // AND inn like :inn:
         if (data.getInn() != null) {
-            cq.where(cb.equal(orgRoot.get(Organization_.inn), data.getInn()));
+            cq.where(cb.like(orgRoot.get(Organization_.inn), data.getInn()));
         }
+        // AND is_active = :isActive:
         if (data.isActive() != null) {
             cq.where(cb.equal(orgRoot.get(Organization_.isActive), data.isActive()));
         }
 
+        // SELECT id, name, is_active
+        //      WHERE lower(name) like :%name%:
+        //      AND inn like :inn:
+        //      AND is_active = :isActive:
         TypedQuery<Organization> query = em.createQuery(cq);
-        List<Organization> listOrg = query.getResultList();
-        return listOrg;
+        return query.getResultList();
     }
 
     @Override
     public Organization get(int id) {
-        return null;
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Organization> cq = cb.createQuery(Organization.class);
+        Root<Organization> orgRoot = cq.from(Organization.class);
+        // SELECT Organization
+        cq.multiselect(orgRoot);
+
+        // WHERE id like :id:
+        cq.where(cb.equal(orgRoot.get(Organization_.id), id));
+
+
+        // SELECT Organization
+        //      WHERE id like :id:
+
+
+        TypedQuery<Organization> query = em.createQuery(cq).setMaxResults(1);
+        return query.getSingleResult();
     }
 
     @Override
