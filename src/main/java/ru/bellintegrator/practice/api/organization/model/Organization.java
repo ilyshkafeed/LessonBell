@@ -1,16 +1,10 @@
 package ru.bellintegrator.practice.api.organization.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Organization {
-    public static final String PARAM_NAME = "name";
-    public static final String PARAM_FULL_NAME = "full_name";
-    public static final String PARAM_INN = "inn";
-    public static final String PARAM_KPP = "kpp";
-    public static final String PARAM_ADDRESS = "address";
-    public static final String PARAM_PHONE = "phone";
-    public static final String PARAM_IS_ACTIVE = "is_active";
+public class Organization implements Serializable {
 
 
     @Id
@@ -20,8 +14,8 @@ public class Organization {
     /**
      * Служебное поле hibernate
      */
-//    @Version
-//    private Integer version;
+    @Version
+    private Integer version;
 
     //Поля сами за себя говорят
     @Column(length = 50, updatable = false, nullable = false)
@@ -81,13 +75,17 @@ public class Organization {
         this.isActive = isActive;
     }
 
-    public Organization(String name, String fullName, String inn, String kpp, String address, String phone) {
-        this(name, fullName, inn, kpp, address, phone, true);
+    public Organization(Integer id, String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive) {
+        this.id = id;
+        this.name = name;
+        this.fullName = fullName;
+        this.inn = inn;
+        this.kpp = kpp;
+        this.address = address;
+        this.phone = phone;
+        this.isActive = isActive;
     }
 
-    public Organization(String name, String fullName, String inn, String kpp, String address) {
-        this(name, fullName, inn, kpp, address, "", true);
-    }
 
     //getter-ы
     public Integer getId() {
@@ -98,6 +96,7 @@ public class Organization {
         return name;
     }
 
+    @Column(name = "full_name")
     public String getFullName() {
         return fullName;
     }
@@ -118,15 +117,20 @@ public class Organization {
         return phone;
     }
 
+    @Column(name = "is_active")
     public boolean isActive() {
         return isActive;
     }
 
     //setter-ы
+
+
+
+
     public void setName(String name) {
         this.name = name;
     }
-
+    @Column(name = "full_name")
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
@@ -147,6 +151,7 @@ public class Organization {
         this.phone = phone;
     }
 
+    @Column(name = "is_active")
     public void setActive(boolean active) {
         isActive = active;
     }
