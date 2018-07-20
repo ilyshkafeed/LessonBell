@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.bellintegrator.practice.annotations.AutoWrapping;
 import ru.bellintegrator.practice.api.exception.view.RequiredFieldExceptionView;
+import ru.bellintegrator.practice.api.exception.view.TextExceptionView;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
 import ru.bellintegrator.practice.api.organization.service.OrganizationsService;
 import ru.bellintegrator.practice.api.organization.view.OrganizationListView;
@@ -61,7 +62,7 @@ public class OrganizationController {
      */
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
-            @ApiResponse(code = 400, message = "Bad Request", response = RequiredFieldExceptionView.class)
+            @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
     })
     @ApiOperation(value = "getOrganization", nickname = "getOrganization", httpMethod = "GET")
     @GetMapping("/{id}")

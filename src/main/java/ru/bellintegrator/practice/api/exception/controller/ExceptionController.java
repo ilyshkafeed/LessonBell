@@ -25,7 +25,7 @@ public class ExceptionController {
 
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<TextExceptionView> Exception(Exception e) {
-        LOG.warn("Не найдена сущность для запроса");
+        LOG.warn(e.getMessage());
         return new ResponseEntity<>(new TextExceptionView(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
