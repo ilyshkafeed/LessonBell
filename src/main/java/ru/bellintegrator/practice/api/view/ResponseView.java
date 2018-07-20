@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.api.publicview;
+package ru.bellintegrator.practice.api.view;
 
 public class ResponseView implements StaticView {
     boolean success;

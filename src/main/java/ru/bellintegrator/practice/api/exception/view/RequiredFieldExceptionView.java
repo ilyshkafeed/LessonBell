@@ -1,11 +1,10 @@
 package ru.bellintegrator.practice.api.exception.view;
 
 import ru.bellintegrator.practice.api.exception.RequiredFieldException;
-import ru.bellintegrator.practice.api.publicview.StaticView;
 
 import java.util.List;
 
-public class RequiredFieldExceptionView implements StaticView {
+public class RequiredFieldExceptionView implements ExceptionView {
 
     private String error;
     private List<String> fields;

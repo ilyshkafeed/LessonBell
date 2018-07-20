@@ -2,8 +2,9 @@ package ru.bellintegrator.practice.api.organization.view;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.bellintegrator.practice.api.organization.model.Organization;
+import ru.bellintegrator.practice.api.view.StaticView;
 
-public class OrganizationListView {
+public class OrganizationListView implements StaticView {
     private int id;
     private String name;
     private Boolean isActive;

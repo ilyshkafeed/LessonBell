@@ -1,8 +1,8 @@
 package ru.bellintegrator.practice.api.organization.view;
 
-import io.swagger.annotations.ApiModelProperty;
+import ru.bellintegrator.practice.api.view.StaticView;
 
-public class OrganizationView {
+public class OrganizationView implements StaticView {
 
 
     public long id;
