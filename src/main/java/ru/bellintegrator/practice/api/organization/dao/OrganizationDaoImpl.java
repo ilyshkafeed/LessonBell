@@ -69,22 +69,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
     @Override
     public Organization get(int id) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Organization> cq = cb.createQuery(Organization.class);
-        Root<Organization> orgRoot = cq.from(Organization.class);
-        // SELECT Organization
-        cq.multiselect(orgRoot);
-
-        // WHERE id like :id:
-        cq.where(cb.equal(orgRoot.get(Organization_.id), id));
-
-
-        // SELECT Organization
-        //      WHERE id like :id:
-
-
-        TypedQuery<Organization> query = em.createQuery(cq).setMaxResults(1);
-        return query.getSingleResult();
+        return em.find(Organization.class, id);
     }
 
     @Override
