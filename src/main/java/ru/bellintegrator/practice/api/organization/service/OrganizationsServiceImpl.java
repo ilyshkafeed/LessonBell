@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.bellintegrator.practice.api.exception.NoEentityFoundForQuery;
 import ru.bellintegrator.practice.api.organization.dao.OrganizationDao;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
 import ru.bellintegrator.practice.api.organization.model.Organization;
@@ -57,7 +58,11 @@ public class OrganizationsServiceImpl implements OrganizationsService {
 
     @Override
     public OrganizationView get(int id) {
-        return new OrganizationView(dao.get(id));
+        Organization org = dao.get(id);
+        if (org == null) {
+            throw new NoEentityFoundForQuery();
+        }
+        return new OrganizationView(org);
     }
 
 

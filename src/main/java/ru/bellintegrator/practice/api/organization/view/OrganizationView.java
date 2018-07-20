@@ -6,7 +6,7 @@ import ru.bellintegrator.practice.api.view.StaticView;
 public class OrganizationView implements StaticView {
 
 
-    public long id;
+    public int id;
     public String name;
     public String fullName;
     public String inn;
@@ -18,7 +18,7 @@ public class OrganizationView implements StaticView {
     public OrganizationView() {
     }
 
-    public OrganizationView(long id, String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive) {
+    public OrganizationView(int id, String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive) {
         this.id = id;
         this.name = name;
         this.fullName = fullName;
