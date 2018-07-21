@@ -18,14 +18,14 @@ public class ExceptionController {
 
     @ExceptionHandler(RequiredFieldException.class)
     protected ResponseEntity<RequiredFieldExceptionView> requiredFieldException(RequiredFieldException e) {
-        LOG.warn(e.toString());
+        LOG.warn(e.toString(),e);
         return new ResponseEntity<>(new RequiredFieldExceptionView(e), HttpStatus.BAD_REQUEST);
     }
 
 
     @ExceptionHandler(Exception.class)
-    protected ResponseEntity<TextExceptionView> Exception(Exception e) {
-        LOG.warn(e.getMessage());
+    protected ResponseEntity<TextExceptionView> exception(Exception e) {
+        LOG.warn(e.getMessage(),e);
         return new ResponseEntity<>(new TextExceptionView(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 

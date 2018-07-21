@@ -2,10 +2,10 @@ package ru.bellintegrator.practice.api.exception;
 
 import java.util.List;
 
-public class NoEentityFoundForQuery extends RuntimeException {
+public class NoEentityFoundForQueryException extends RuntimeException {
 
 
-    public NoEentityFoundForQuery() {
+    public NoEentityFoundForQueryException() {
         super("Не найдена сущность для запроса");
     }
 
