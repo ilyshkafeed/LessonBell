@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.api.exception.NoEentityFoundForQueryException;
 import ru.bellintegrator.practice.api.organization.dao.OrganizationDao;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
+import ru.bellintegrator.practice.api.organization.datain.OrganizationSave;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationUpdate;
 import ru.bellintegrator.practice.api.organization.model.Organization;
 import ru.bellintegrator.practice.api.organization.view.OrganizationListView;
@@ -29,14 +30,6 @@ public class OrganizationsServiceImpl implements OrganizationsService {
         this.dao = dao;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void add(OrganizationView organization) {
-
-
-    }
 
 
     /**
@@ -82,9 +75,8 @@ public class OrganizationsServiceImpl implements OrganizationsService {
         if (!updateInfo.validate()) {
             throw updateInfo.getValidateException();
         }
-        System.out.println(updateInfo);
+
         Organization org = getOrganizationDao(updateInfo.getId());
-        System.out.println(org);
         org.setName(updateInfo.getName());
         org.setFullName(updateInfo.getFullName());
         org.setInn(updateInfo.getInn());
@@ -93,8 +85,27 @@ public class OrganizationsServiceImpl implements OrganizationsService {
         org.setPhone(updateInfo.getPhone());
         if (updateInfo.getPhone() != null) org.setAddress(updateInfo.getAddress());
         if (updateInfo.isActive() != null) org.setActive(updateInfo.isActive());
-        System.out.println(org);
-        dao.save();
+
+        dao.flush();
+    }
+
+    @Override
+    @Transactional
+    public void save(OrganizationSave info) {
+        if (!info.validate()) {
+            throw info.getValidateException();
+        }
+        Organization org = new Organization();
+        org.setName(info.getName());
+        org.setFullName(info.getFullName());
+        org.setInn(info.getInn());
+        org.setKpp(info.getKpp());
+        org.setAddress(info.getAddress());
+        org.setPhone(info.getPhone());
+        if (info.getPhone() != null) org.setAddress(info.getAddress());
+        if (info.isActive() != null) org.setActive(info.isActive());
+        dao.save(org);
+        dao.flush();
     }
 
 

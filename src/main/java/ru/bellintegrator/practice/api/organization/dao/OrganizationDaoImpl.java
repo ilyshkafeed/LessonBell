@@ -75,7 +75,12 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
 
     @Override
-    public void save() {
+    public void flush() {
         em.flush();
+    }
+
+    @Override
+    public void save(Organization org) {
+        em.persist(org);
     }
 }

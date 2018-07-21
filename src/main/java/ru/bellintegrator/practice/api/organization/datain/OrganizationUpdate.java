@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class OrganizationUpdate implements Validation {
+public class OrganizationUpdate implements Validation  {
     private static final Pattern REGEX_PATTERN_NAME = Pattern.compile("^[0-9a-zA-Z ,\"]{2,50}$", Pattern.MULTILINE);
     private static final Pattern REGEX_PATTERN_PHONE = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$", Pattern.MULTILINE);
 
@@ -96,6 +96,7 @@ public class OrganizationUpdate implements Validation {
     }
 
 
+    @SuppressWarnings("Duplicates")
     private boolean validateFields() {
         if (!REGEX_PATTERN_NAME.matcher(name).matches()) {
             ex = new FieldFailedValidationException("name");

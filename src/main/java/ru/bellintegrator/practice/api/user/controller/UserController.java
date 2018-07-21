@@ -57,7 +57,7 @@ public class UserController {
     @GetMapping("/update")
     public String update(@RequestBody UserView updateInfo) {
         return "{" +
-                "“result”:”SuccessView”" +
+                "“result”:”ResultView”" +
                 "}";
     }
 
@@ -68,11 +68,11 @@ public class UserController {
      * @param info переданная информация
      * @return статус
      */
-    @ApiOperation(value = "save", nickname = "save", httpMethod = "POST")
+    @ApiOperation(value = "flush", nickname = "flush", httpMethod = "POST")
     @GetMapping("/save")
     public String save(@RequestBody UserView info) {
         return "{" +
-                "“result”:”SuccessView”" +
+                "“result”:”ResultView”" +
                 "}";
     }
 

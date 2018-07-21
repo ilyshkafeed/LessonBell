@@ -58,6 +58,11 @@ public class Organization implements Serializable {
 
     }
 
+    public Organization(int id, String name, boolean isActive) {
+        this.id = id;
+        this.name = name;
+        this.isActive = isActive;
+    }
 
     public Organization(String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive) {
         this.name = name;

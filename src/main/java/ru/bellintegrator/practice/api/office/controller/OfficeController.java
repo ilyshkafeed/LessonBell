@@ -57,7 +57,7 @@ public class OfficeController {
     @GetMapping("/update")
     public String update(@RequestBody OfficeView updateInfo) {
         return "{" +
-                "“result”:”SuccessView”" +
+                "“result”:”ResultView”" +
                 "}";
     }
 
@@ -68,11 +68,11 @@ public class OfficeController {
      * @param info переданная информация
      * @return статус
      */
-    @ApiOperation(value = "save", nickname = "save", httpMethod = "POST")
+    @ApiOperation(value = "flush", nickname = "flush", httpMethod = "POST")
     @GetMapping("/save")
     public String save(@RequestBody OfficeView info) {
         return "{" +
-                "“result”:”SuccessView”" +
+                "“result”:”ResultView”" +
                 "}";
     }
 

@@ -30,6 +30,7 @@ public interface OrganizationDao {
      */
     Organization get(int id);
 
-    void save();
+    void flush();
+    void save(Organization org);
 
 }

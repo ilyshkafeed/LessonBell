@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class OrganizationSave implements Validation {
-    private static final Pattern REGEX_PATTERN_NAME = Pattern.compile("^[a-zA-Z ,\"]{5,50}$", Pattern.MULTILINE);
-    private static final Pattern REGEX_PATTERN_PHONE = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$", Pattern.MULTILINE);
+    private static final Pattern REGEX_PATTERN_NAME = Pattern.compile("^[a-zA-Z ,\"]{2,50}$");
+    private static final Pattern REGEX_PATTERN_PHONE = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
 
 
     @JsonIgnore
@@ -24,12 +24,12 @@ public class OrganizationSave implements Validation {
     public String kpp;
     public String address;
     public String phone;
-    public boolean isActive;
+    public Boolean isActive;
 
     public OrganizationSave() {
     }
 
-    public OrganizationSave(String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive) {
+    public OrganizationSave(String name, String fullName, String inn, String kpp, String address, String phone, Boolean isActive) {
         this.name = name;
         this.fullName = fullName;
         this.inn = inn;
@@ -39,16 +39,6 @@ public class OrganizationSave implements Validation {
         this.isActive = isActive;
     }
 
-    public OrganizationSave(Organization organization) {
-        this(organization.getName(),
-                organization.getFullName(),
-                organization.getInn(),
-                organization.getKpp(),
-                organization.getAddress(),
-                organization.getPhone(),
-                organization.isActive()
-        );
-    }
 
     @Override
     public String toString() {
@@ -88,6 +78,7 @@ public class OrganizationSave implements Validation {
         return true;
     }
 
+    @SuppressWarnings("Duplicates")
     private boolean validateFields() {
         if (!REGEX_PATTERN_NAME.matcher(name).matches()) {
             ex = new FieldFailedValidationException("name");
@@ -97,18 +88,46 @@ public class OrganizationSave implements Validation {
             ex = new FieldFailedValidationException("fullName");
             return false;
         }
-        if (inn.length()==10) {
+        if (inn.length() != 10) {
             ex = new FieldFailedValidationException("inn");
             return false;
         }
-        if (kpp.length()==9) {
+        if (kpp.length() != 9) {
             ex = new FieldFailedValidationException("kpp");
             return false;
         }
-        if (!REGEX_PATTERN_PHONE.matcher(fullName).matches()) {
+        if (!REGEX_PATTERN_PHONE.matcher(phone).matches()) {
             ex = new FieldFailedValidationException("phone");
             return false;
         }
         return true;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getInn() {
+        return inn;
+    }
+
+    public String getKpp() {
+        return kpp;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Boolean isActive() {
+        return isActive;
     }
 }

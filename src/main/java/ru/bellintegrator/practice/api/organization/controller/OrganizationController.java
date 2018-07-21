@@ -11,6 +11,7 @@ import ru.bellintegrator.practice.annotations.AutoWrapping;
 import ru.bellintegrator.practice.api.exception.view.RequiredFieldExceptionView;
 import ru.bellintegrator.practice.api.exception.view.TextExceptionView;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
+import ru.bellintegrator.practice.api.organization.datain.OrganizationSave;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationUpdate;
 import ru.bellintegrator.practice.api.organization.service.OrganizationsService;
 import ru.bellintegrator.practice.api.organization.view.OrganizationListView;
@@ -79,6 +80,10 @@ public class OrganizationController {
      * @return Статус выполнения.
      */
     @ApiOperation(value = "update", nickname = "update", httpMethod = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
+    })
     @PostMapping("/update")
     public ResultView update(@RequestBody OrganizationUpdate updateInfo) {
         organizationsService.update(updateInfo);
@@ -92,9 +97,15 @@ public class OrganizationController {
      * @param info переданная информация
      * @return Статус выполнения
      */
-    @ApiOperation(value = "save", nickname = "save", httpMethod = "POST")
+    @ApiOperation(value = "flush", nickname = "flush", httpMethod = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
+    })
     @PostMapping("/save")
-    public StaticView save(@RequestBody OrganizationView info) {
+    public StaticView save(@RequestBody OrganizationSave info)
+    {
+        organizationsService.save(info);
         return ResultView.SUCCESS;
     }
 
