@@ -1,6 +1,7 @@
 package ru.bellintegrator.practice.api.organization.service;
 
 import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
+import ru.bellintegrator.practice.api.organization.datain.OrganizationUpdate;
 import ru.bellintegrator.practice.api.organization.view.OrganizationListView;
 import ru.bellintegrator.practice.api.organization.view.OrganizationView;
 
@@ -32,4 +33,6 @@ public interface  OrganizationsService {
 
 
     OrganizationView get(int id);
+
+    void update(OrganizationUpdate updateInfo);
 }

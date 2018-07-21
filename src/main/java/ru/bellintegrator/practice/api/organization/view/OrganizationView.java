@@ -1,12 +1,16 @@
 package ru.bellintegrator.practice.api.organization.view;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import ru.bellintegrator.practice.api.organization.model.Organization;
 import ru.bellintegrator.practice.api.view.StaticView;
 
 public class OrganizationView implements StaticView {
 
 
-    public int id;
+    @JsonIgnore
+    public RuntimeException ex;
+
+    public Integer id;
     public String name;
     public String fullName;
     public String inn;
@@ -18,7 +22,7 @@ public class OrganizationView implements StaticView {
     public OrganizationView() {
     }
 
-    public OrganizationView(int id, String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive) {
+    public OrganizationView(String name, String fullName, String inn, String kpp, String address, String phone, boolean isActive) {
         this.id = id;
         this.name = name;
         this.fullName = fullName;
@@ -30,9 +34,7 @@ public class OrganizationView implements StaticView {
     }
 
     public OrganizationView(Organization organization) {
-        this(
-                organization.getId(),
-                organization.getName(),
+        this(organization.getName(),
                 organization.getFullName(),
                 organization.getInn(),
                 organization.getKpp(),
@@ -40,6 +42,7 @@ public class OrganizationView implements StaticView {
                 organization.getPhone(),
                 organization.isActive()
         );
+        this.id = organization.getId();
     }
 
     @Override

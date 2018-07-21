@@ -18,7 +18,7 @@ public class Organization implements Serializable {
     private Integer version;
 
     //Поля сами за себя говорят
-    @Column(length = 50, updatable = false, nullable = false)
+    @Column(length = 50, nullable = false)
     private String name;
 
     @Column(name = "full_name", length = 255, nullable = false)
@@ -56,12 +56,6 @@ public class Organization implements Serializable {
 
     public Organization() {
 
-    }
-
-    public Organization(Integer id, String name, boolean isActive) {
-        this.id = id;
-        this.name = name;
-        this.isActive = isActive;
     }
 
 

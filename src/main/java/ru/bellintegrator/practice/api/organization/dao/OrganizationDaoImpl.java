@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.api.organization.dao;
 
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,8 +73,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
         return em.find(Organization.class, id);
     }
 
-    @Override
-    public void save(Organization organization) {
 
+    @Override
+    public void save() {
+        em.flush();
     }
 }

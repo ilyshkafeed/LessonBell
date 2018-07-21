@@ -11,11 +11,12 @@ import ru.bellintegrator.practice.annotations.AutoWrapping;
 import ru.bellintegrator.practice.api.exception.view.RequiredFieldExceptionView;
 import ru.bellintegrator.practice.api.exception.view.TextExceptionView;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
+import ru.bellintegrator.practice.api.organization.datain.OrganizationUpdate;
 import ru.bellintegrator.practice.api.organization.service.OrganizationsService;
 import ru.bellintegrator.practice.api.organization.view.OrganizationListView;
 import ru.bellintegrator.practice.api.organization.view.OrganizationView;
 import ru.bellintegrator.practice.api.view.StaticView;
-import ru.bellintegrator.practice.api.view.SuccessView;
+import ru.bellintegrator.practice.api.view.ResultView;
 
 import java.util.List;
 
@@ -79,10 +80,9 @@ public class OrganizationController {
      */
     @ApiOperation(value = "update", nickname = "update", httpMethod = "POST")
     @PostMapping("/update")
-    public String update(@RequestBody OrganizationView updateInfo) {
-        return "{" +
-                "“result”:”SuccessView”" +
-                "}";
+    public ResultView update(@RequestBody OrganizationUpdate updateInfo) {
+        organizationsService.update(updateInfo);
+        return ResultView.SUCCESS;
     }
 
 
@@ -95,7 +95,7 @@ public class OrganizationController {
     @ApiOperation(value = "save", nickname = "save", httpMethod = "POST")
     @PostMapping("/save")
     public StaticView save(@RequestBody OrganizationView info) {
-        return new SuccessView();
+        return ResultView.SUCCESS;
     }
 
 }
