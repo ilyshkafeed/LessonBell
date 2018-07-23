@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.bellintegrator.practice.annotations.AutoWrapping;
+import ru.bellintegrator.practice.api.ValidateUtilits;
 import ru.bellintegrator.practice.api.exception.view.TextExceptionView;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationSave;
@@ -53,8 +54,8 @@ public class OrganizationController {
     })
     @ApiOperation(value = "getOrganizations", nickname = "getOrganizations", httpMethod = "POST")
     @PostMapping("/list")
-    public List<OrganizationListView> getOrganizations(@Valid @RequestBody OrganizationList param, BindingResult bindingResult, Organization model) {
-        validateBindingResult(bindingResult);
+    public List<OrganizationListView> getOrganizations(@Valid @RequestBody OrganizationList param, BindingResult bindingResult) {
+        ValidateUtilits.validateBindingResult(bindingResult);
         return (organizationsService.shortList(param));
     }
 
@@ -89,7 +90,7 @@ public class OrganizationController {
     })
     @PostMapping("/update")
     public ResultView update(@Valid @RequestBody OrganizationUpdate updateInfo, BindingResult bindingResult) {
-        validateBindingResult(bindingResult);
+        ValidateUtilits.validateBindingResult(bindingResult);
         organizationsService.update(updateInfo);
         return ResultView.SUCCESS;
     }
@@ -108,15 +109,10 @@ public class OrganizationController {
     })
     @PostMapping("/save")
     public StaticView save(@RequestBody OrganizationSave info, BindingResult bindingResult) {
-        validateBindingResult(bindingResult);
+        ValidateUtilits.validateBindingResult(bindingResult);
         organizationsService.save(info);
         return ResultView.SUCCESS;
     }
-
-    private static void validateBindingResult(BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            throw new RuntimeException(bindingResult.getAllErrors().get(0).getDefaultMessage());
-        }
-    }
+    
 
 }

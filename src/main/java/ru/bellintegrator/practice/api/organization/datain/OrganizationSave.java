@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.api.organization.datain;
 
+import ru.bellintegrator.practice.api.ValidateUtilits;
 import ru.bellintegrator.practice.api.organization.model.Organization;
 import ru.bellintegrator.practice.validator.Phone;
 import ru.bellintegrator.practice.validator.RegEx;
@@ -15,12 +16,12 @@ public class OrganizationSave {
 
     @NotNull(message = "Поле 'name' не может быть пустым")
     @Size(min = 2, max = 50, message = "Размер 'name' должен быть от 2 до 50 символов")
-    @RegEx(value = Organization.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
+    @RegEx(value = ValidateUtilits.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
     private String name;
 
     @NotNull(message = "Поле 'fullName' не может быть пустым")
     @Size(min = 2, max = 255, message = "Размер 'name' должен быть от 2 до 255 символов")
-    @RegEx(value = Organization.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
+    @RegEx(value = ValidateUtilits.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
     private String fullName;
 
     @NotNull(message = "Поле 'inn' не может быть пустым")
