@@ -14,11 +14,8 @@ public class RegExConstraintValidator implements ConstraintValidator<RegEx, Stri
     }
 
     @Override
-    public boolean isValid(String phoneField, ConstraintValidatorContext cxt) {
-        if (phoneField == null) {
-            return false;
-        }
-        return phoneField.matches(regEx.value());
+    public boolean isValid(String regExField, ConstraintValidatorContext cxt) {
+        return regExField == null || regExField.matches(regEx.value());
     }
 
 }

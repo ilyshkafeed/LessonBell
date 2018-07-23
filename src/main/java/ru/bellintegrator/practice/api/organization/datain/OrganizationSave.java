@@ -1,5 +1,7 @@
 package ru.bellintegrator.practice.api.organization.datain;
 
+import ru.bellintegrator.practice.api.organization.model.Organization;
+import ru.bellintegrator.practice.validator.Phone;
 import ru.bellintegrator.practice.validator.RegEx;
 
 import javax.validation.constraints.NotNull;
@@ -10,17 +12,15 @@ import javax.validation.constraints.Size;
  * Добавление новой роганизации
  */
 public class OrganizationSave {
-//    private static final Pattern REGEX_PATTERN_NAME = Pattern.compile("^[a-zA-Z ,\"]{2,50}$");
-//    private static final Pattern REGEX_PATTERN_PHONE = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
-
 
     @NotNull(message = "Поле 'name' не может быть пустым")
     @Size(min = 2, max = 50, message = "Размер 'name' должен быть от 2 до 50 символов")
-    @RegEx(value = "^[a-zA-Z ,\"]+$", message = "В имени присудствуют запрещеные символы")
+    @RegEx(value = Organization.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
     private String name;
 
     @NotNull(message = "Поле 'fullName' не может быть пустым")
     @Size(min = 2, max = 255, message = "Размер 'name' должен быть от 2 до 255 символов")
+    @RegEx(value = Organization.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
     private String fullName;
 
     @NotNull(message = "Поле 'inn' не может быть пустым")
@@ -35,7 +35,8 @@ public class OrganizationSave {
     @Size(max = 255, message = "Поле 'address' не может привышать 255 символов")
     private String address;
 
-    @Size(max = 50, message = "Поле 'phone' не может привышать 255 символов")
+    @Size(max = 50, message = "Поле 'phone' не может привышать 50 символов")
+    @Phone(message = "Введен неправильный телефон")
     private String phone;
 
     private Boolean isActive;

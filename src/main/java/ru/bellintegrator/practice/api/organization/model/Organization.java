@@ -9,6 +9,8 @@ import java.util.Set;
 @Entity
 public class Organization implements Serializable {
 
+    public static final String REGEX_PATTERN_NAME = "^[a-zA-Z0-9а-яА-Я ,.\"]$";
+
 
     @Id
     @GeneratedValue

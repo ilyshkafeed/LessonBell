@@ -55,9 +55,6 @@ public class OrganizationController {
     @PostMapping("/list")
     public List<OrganizationListView> getOrganizations(@Valid @RequestBody OrganizationList param, BindingResult bindingResult, Organization model) {
         validateBindingResult(bindingResult);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> " );
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> " + model.toString());
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> " );
         return (organizationsService.shortList(param));
     }
 

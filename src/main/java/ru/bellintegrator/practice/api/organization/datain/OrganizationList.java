@@ -1,6 +1,7 @@
 package ru.bellintegrator.practice.api.organization.datain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import ru.bellintegrator.practice.api.organization.model.Organization;
 import ru.bellintegrator.practice.validator.RegEx;
 
 import javax.validation.constraints.NotNull;
@@ -14,8 +15,8 @@ import javax.validation.constraints.Size;
 public class OrganizationList {
 
     @NotNull(message = "Поле 'name' не может быть пустым")
-    @Size(min = 1, max = 255, message = "Размер 'Name' должен быть от 1 до 255")
-    @RegEx(value = "^[a-zA-Z ,\"]+$", message = "В имени присудствуют запрещеные символы")
+    @Size(min = 1, max = 50, message = "Размер 'name' должен быть от 1 до 50 символов")
+    @RegEx(value = Organization.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
     private String name;
 
     @Size(min = 10, max = 10, message = "Размер 'inn' должен быть 10")
