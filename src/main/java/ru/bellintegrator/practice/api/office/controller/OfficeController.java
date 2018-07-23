@@ -27,7 +27,7 @@ public class OfficeController {
      * @return {@link List}<{@link OfficeView}> список компаний.
      */
     @ApiOperation(value = "getOffices", nickname = "getOffices", httpMethod = "POST")
-    @PostMapping("/list/{orgId}")
+    @PostMapping("/list")
     public List<OfficeView> getOffices(@PathVariable long orgId, @RequestBody OfficeView param) {
         param.ordId = orgId;
         return Collections.emptyList();

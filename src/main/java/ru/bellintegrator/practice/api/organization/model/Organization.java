@@ -1,7 +1,10 @@
 package ru.bellintegrator.practice.api.organization.model;
 
+import ru.bellintegrator.practice.api.office.model.Office;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class Organization implements Serializable {
@@ -39,20 +42,20 @@ public class Organization implements Serializable {
     @Column(name = "is_active", length = 50, nullable = false)
     private boolean isActive = true;
 
-//  Привер заготовки под офисы
-//    @ManyToMany(
-//            cascade = {
-//                    CascadeType.PERSIST,
-//                    CascadeType.MERGE
-//            }
-//    )
-//    @JoinTable(
-//            name = "Person_House",
-//            joinColumns = @JoinColumn(name = "person_id"),
-//            inverseJoinColumns = @JoinColumn(name = "house_id")
-//    )
-//    private Set<House> houses;
+    //  Привер заготовки под офисы
 
+    @OneToMany(
+            mappedBy = "organization",
+//            orphanRemoval = true,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private Set<Office> offices;
+
+
+    public Set<Office> getOffices() {
+        return offices;
+    }
 
     public Organization() {
 
@@ -124,11 +127,10 @@ public class Organization implements Serializable {
     //setter-ы
 
 
-
-
     public void setName(String name) {
         this.name = name;
     }
+
     @Column(name = "full_name")
     public void setFullName(String fullName) {
         this.fullName = fullName;
