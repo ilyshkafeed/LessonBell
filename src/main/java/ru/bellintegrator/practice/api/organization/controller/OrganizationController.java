@@ -6,19 +6,21 @@ import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.bellintegrator.practice.annotations.AutoWrapping;
-import ru.bellintegrator.practice.api.exception.view.RequiredFieldExceptionView;
 import ru.bellintegrator.practice.api.exception.view.TextExceptionView;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationSave;
 import ru.bellintegrator.practice.api.organization.datain.OrganizationUpdate;
+import ru.bellintegrator.practice.api.organization.model.Organization;
 import ru.bellintegrator.practice.api.organization.service.OrganizationsService;
 import ru.bellintegrator.practice.api.organization.view.OrganizationListView;
 import ru.bellintegrator.practice.api.organization.view.OrganizationView;
-import ru.bellintegrator.practice.api.view.StaticView;
 import ru.bellintegrator.practice.api.view.ResultView;
+import ru.bellintegrator.practice.api.view.StaticView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -47,11 +49,15 @@ public class OrganizationController {
      */
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
-            @ApiResponse(code = 400, message = "Bad Request", response = RequiredFieldExceptionView.class)
+            @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
     })
     @ApiOperation(value = "getOrganizations", nickname = "getOrganizations", httpMethod = "POST")
     @PostMapping("/list")
-    public List<OrganizationListView> getOrganizations(@RequestBody OrganizationList param) {
+    public List<OrganizationListView> getOrganizations(@Valid @RequestBody OrganizationList param, BindingResult bindingResult, Organization model) {
+        validateBindingResult(bindingResult);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> " );
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> " + model.toString());
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> " );
         return (organizationsService.shortList(param));
     }
 
@@ -85,7 +91,8 @@ public class OrganizationController {
             @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
     })
     @PostMapping("/update")
-    public ResultView update(@RequestBody OrganizationUpdate updateInfo) {
+    public ResultView update(@Valid @RequestBody OrganizationUpdate updateInfo, BindingResult bindingResult) {
+        validateBindingResult(bindingResult);
         organizationsService.update(updateInfo);
         return ResultView.SUCCESS;
     }
@@ -103,10 +110,16 @@ public class OrganizationController {
             @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
     })
     @PostMapping("/save")
-    public StaticView save(@RequestBody OrganizationSave info)
-    {
+    public StaticView save(@RequestBody OrganizationSave info, BindingResult bindingResult) {
+        validateBindingResult(bindingResult);
         organizationsService.save(info);
         return ResultView.SUCCESS;
+    }
+
+    private static void validateBindingResult(BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new RuntimeException(bindingResult.getAllErrors().get(0).getDefaultMessage());
+        }
     }
 
 }
