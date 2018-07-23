@@ -1,30 +1,44 @@
 package ru.bellintegrator.practice.api.organization.datain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import ru.bellintegrator.practice.api.Validation;
-import ru.bellintegrator.practice.api.exception.FieldFailedValidationException;
-import ru.bellintegrator.practice.api.exception.RequiredFieldException;
-import ru.bellintegrator.practice.api.organization.model.Organization;
+import ru.bellintegrator.practice.validator.RegEx;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-public class OrganizationSave implements Validation {
-    private static final Pattern REGEX_PATTERN_NAME = Pattern.compile("^[a-zA-Z ,\"]{2,50}$");
-    private static final Pattern REGEX_PATTERN_PHONE = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
+/**
+ * Класс для входных данных <br>
+ * Добавление новой роганизации
+ */
+public class OrganizationSave {
+//    private static final Pattern REGEX_PATTERN_NAME = Pattern.compile("^[a-zA-Z ,\"]{2,50}$");
+//    private static final Pattern REGEX_PATTERN_PHONE = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
 
 
-    @JsonIgnore
-    public RuntimeException ex;
+    @NotNull(message = "Поле 'name' не может быть пустым")
+    @Size(min = 2, max = 50, message = "Размер 'name' должен быть от 2 до 50 символов")
+    @RegEx(value = "^[a-zA-Z ,\"]+$", message = "В имени присудствуют запрещеные символы")
+    private String name;
 
-    public String name;
-    public String fullName;
-    public String inn;
-    public String kpp;
-    public String address;
-    public String phone;
-    public Boolean isActive;
+    @NotNull(message = "Поле 'fullName' не может быть пустым")
+    @Size(min = 2, max = 255, message = "Размер 'name' должен быть от 2 до 255 символов")
+    private String fullName;
+
+    @NotNull(message = "Поле 'inn' не может быть пустым")
+    @Size(min = 10, max = 10, message = "Размер 'name' должен быть 10 символов")
+    private String inn;
+
+    @NotNull(message = "Поле 'kpp' не может быть пустым")
+    @Size(min = 9, max = 9, message = "Размер 'name' должен быть 9 символов")
+    private String kpp;
+
+    @NotNull(message = "Поле 'address' не может быть пустым")
+    @Size(max = 255, message = "Поле 'address' не может привышать 255 символов")
+    private String address;
+
+    @Size(max = 50, message = "Поле 'phone' не может привышать 255 символов")
+    private String phone;
+
+    private Boolean isActive;
 
     public OrganizationSave() {
     }
@@ -53,55 +67,6 @@ public class OrganizationSave implements Validation {
                 '}';
     }
 
-    @Override
-    public boolean validate() {
-        return validateNull()           // 1
-                && validateFields();      // 2
-    }
-
-    @Override
-    public RuntimeException getValidateException() {
-        return ex;
-    }
-
-    private boolean validateNull() {
-        List<String> l = new ArrayList<>();
-        if (name == null) l.add("name");
-        if (fullName == null) l.add("fullName");
-        if (inn == null) l.add("inn");
-        if (kpp == null) l.add("kpp");
-        if (address == null) l.add("address");
-        if (l.size() > 0) {
-            ex = new RequiredFieldException(l);
-            return false;
-        }
-        return true;
-    }
-
-    @SuppressWarnings("Duplicates")
-    private boolean validateFields() {
-        if (!REGEX_PATTERN_NAME.matcher(name).matches()) {
-            ex = new FieldFailedValidationException("name");
-            return false;
-        }
-        if (!REGEX_PATTERN_NAME.matcher(fullName).matches()) {
-            ex = new FieldFailedValidationException("fullName");
-            return false;
-        }
-        if (inn.length() != 10) {
-            ex = new FieldFailedValidationException("inn");
-            return false;
-        }
-        if (kpp.length() != 9) {
-            ex = new FieldFailedValidationException("kpp");
-            return false;
-        }
-        if (!REGEX_PATTERN_PHONE.matcher(phone).matches()) {
-            ex = new FieldFailedValidationException("phone");
-            return false;
-        }
-        return true;
-    }
 
     public String getName() {
         return name;
