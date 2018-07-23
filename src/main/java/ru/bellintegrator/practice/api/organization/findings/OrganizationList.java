@@ -1,8 +1,7 @@
-package ru.bellintegrator.practice.api.organization.datain;
+package ru.bellintegrator.practice.api.organization.findings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.bellintegrator.practice.api.ValidateUtilits;
-import ru.bellintegrator.practice.api.organization.model.Organization;
 import ru.bellintegrator.practice.validator.RegEx;
 
 import javax.validation.constraints.NotNull;

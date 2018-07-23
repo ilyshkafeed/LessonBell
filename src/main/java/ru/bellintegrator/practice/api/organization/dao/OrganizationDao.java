@@ -1,6 +1,6 @@
 package ru.bellintegrator.practice.api.organization.dao;
 
-import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
+import ru.bellintegrator.practice.api.organization.findings.OrganizationList;
 import ru.bellintegrator.practice.api.organization.model.Organization;
 
 import java.util.List;

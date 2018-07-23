@@ -1,16 +1,17 @@
-package ru.bellintegrator.practice.api.organization.datain;
+package ru.bellintegrator.practice.api.organization.findings;
 
 import ru.bellintegrator.practice.api.ValidateUtilits;
-import ru.bellintegrator.practice.api.organization.model.Organization;
 import ru.bellintegrator.practice.validator.Phone;
 import ru.bellintegrator.practice.validator.RegEx;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class OrganizationUpdate {
-    @NotNull(message = "Поле 'name' не может быть пустым")
-    private Integer id;
+/**
+ * Класс для входных данных <br>
+ * Добавление новой роганизации
+ */
+public class OrganizationSave {
 
     @NotNull(message = "Поле 'name' не может быть пустым")
     @Size(min = 2, max = 50, message = "Размер 'name' должен быть от 2 до 50 символов")
@@ -40,11 +41,10 @@ public class OrganizationUpdate {
 
     private Boolean isActive;
 
-    public OrganizationUpdate() {
+    public OrganizationSave() {
     }
 
-    public OrganizationUpdate(Integer id, String name, String fullName, String inn, String kpp, String address, String phone, Boolean isActive) {
-        this.id = id;
+    public OrganizationSave(String name, String fullName, String inn, String kpp, String address, String phone, Boolean isActive) {
         this.name = name;
         this.fullName = fullName;
         this.inn = inn;
@@ -58,7 +58,6 @@ public class OrganizationUpdate {
     @Override
     public String toString() {
         return "{" +
-                ", id=\"" + id + '\"' +
                 ", name=\"" + name + '\"' +
                 ", fullName=\"" + fullName + '\"' +
                 ", inn=\"" + inn + '\"' +
@@ -69,10 +68,6 @@ public class OrganizationUpdate {
                 '}';
     }
 
-
-    public Integer getId() {
-        return id;
-    }
 
     public String getName() {
         return name;

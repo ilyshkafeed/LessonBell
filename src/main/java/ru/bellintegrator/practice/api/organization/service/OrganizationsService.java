@@ -1,8 +1,8 @@
 package ru.bellintegrator.practice.api.organization.service;
 
-import ru.bellintegrator.practice.api.organization.datain.OrganizationList;
-import ru.bellintegrator.practice.api.organization.datain.OrganizationSave;
-import ru.bellintegrator.practice.api.organization.datain.OrganizationUpdate;
+import ru.bellintegrator.practice.api.organization.findings.OrganizationList;
+import ru.bellintegrator.practice.api.organization.findings.OrganizationSave;
+import ru.bellintegrator.practice.api.organization.findings.OrganizationUpdate;
 import ru.bellintegrator.practice.api.organization.view.OrganizationListView;
 import ru.bellintegrator.practice.api.organization.view.OrganizationView;
 

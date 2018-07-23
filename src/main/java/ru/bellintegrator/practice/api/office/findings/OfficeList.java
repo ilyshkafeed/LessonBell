@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.api.office.datain;
+package ru.bellintegrator.practice.api.office.findings;
 
 
 import org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapProperties;

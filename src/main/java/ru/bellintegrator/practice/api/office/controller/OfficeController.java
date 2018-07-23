@@ -2,11 +2,10 @@ package ru.bellintegrator.practice.api.office.controller;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.bellintegrator.practice.api.ValidateUtilits;
-import ru.bellintegrator.practice.api.office.datain.OfficeList;
+import ru.bellintegrator.practice.api.office.findings.OfficeList;
 import ru.bellintegrator.practice.api.office.view.OfficeView;
 import ru.bellintegrator.practice.api.view.ResultView;
 import ru.bellintegrator.practice.api.view.StaticView;
