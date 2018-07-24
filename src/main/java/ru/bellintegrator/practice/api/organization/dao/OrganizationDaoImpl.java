@@ -50,12 +50,13 @@ public class OrganizationDaoImpl implements OrganizationDao {
         // WHERE lower(name) like :%name%:
         cq.where(cb.like(cb.lower(orgRoot.get(Organization_.name)), "%" + data.getName().toLowerCase() + "%"));
 
-        // AND inn like :inn:
         if (data.getInn() != null) {
+            // AND inn like :inn:
             cq.where(cb.like(orgRoot.get(Organization_.inn), data.getInn()));
         }
-        // AND is_active = :isActive:
+
         if (data.isActive() != null) {
+            // AND is_active = :isActive:
             cq.where(cb.equal(orgRoot.get(Organization_.isActive), data.isActive()));
         }
 
@@ -73,7 +74,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
 
-    @Override
+
     public void flush() {
         em.flush();
     }

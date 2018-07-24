@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.api;
+package ru.bellintegrator.practice.utilits;
 
 import org.springframework.validation.BindingResult;
 

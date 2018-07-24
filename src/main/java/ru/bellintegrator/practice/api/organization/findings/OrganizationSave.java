@@ -1,6 +1,6 @@
 package ru.bellintegrator.practice.api.organization.findings;
 
-import ru.bellintegrator.practice.api.ValidateUtilits;
+import ru.bellintegrator.practice.utilits.ValidateUtilits;
 import ru.bellintegrator.practice.validator.Phone;
 import ru.bellintegrator.practice.validator.RegEx;
 

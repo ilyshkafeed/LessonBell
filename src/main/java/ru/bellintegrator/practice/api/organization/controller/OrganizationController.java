@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.bellintegrator.practice.annotations.AutoWrapping;
-import ru.bellintegrator.practice.api.ValidateUtilits;
+import ru.bellintegrator.practice.utilits.ValidateUtilits;
 import ru.bellintegrator.practice.api.exception.view.TextExceptionView;
 import ru.bellintegrator.practice.api.organization.findings.OrganizationList;
 import ru.bellintegrator.practice.api.organization.findings.OrganizationSave;

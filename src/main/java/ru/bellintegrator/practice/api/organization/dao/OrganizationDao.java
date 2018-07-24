@@ -30,6 +30,10 @@ public interface OrganizationDao {
      */
     Organization get(int id);
 
+    /**
+     * Метод для отправки данных в бд.
+     *
+     */
     void flush();
     void save(Organization org);
 
