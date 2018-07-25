@@ -1,7 +1,7 @@
 package ru.bellintegrator.practice.api.view;
 
 public class DataView implements StaticView {
-   private Object data;
+    private Object data;
 
     public DataView() {
     }

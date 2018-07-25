@@ -2,9 +2,10 @@ package ru.bellintegrator.practice.api.docs.controller;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.bellintegrator.practice.api.docs.view.DocsView;
-import ru.bellintegrator.practice.api.office.view.OfficeView;
 
 import java.util.Collections;
 import java.util.List;

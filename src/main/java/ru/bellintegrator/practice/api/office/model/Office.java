@@ -30,7 +30,6 @@ public class Office implements Serializable {
     private Organization organization;
 
 
-
     @Column
     boolean isActive = true;
 
@@ -57,6 +56,7 @@ public class Office implements Serializable {
         LazyInitializer initializer = ((HibernateProxy) getOrganization()).getHibernateLazyInitializer();
         return (Integer) initializer.getIdentifier();
     }
+
     public String getName() {
         return name;
     }
@@ -68,7 +68,6 @@ public class Office implements Serializable {
     public String getPhone() {
         return phone;
     }
-
 
 
     @Column(name = "is_active")

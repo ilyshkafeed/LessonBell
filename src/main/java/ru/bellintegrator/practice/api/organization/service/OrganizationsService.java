@@ -8,7 +8,7 @@ import ru.bellintegrator.practice.api.organization.view.OrganizationView;
 
 import java.util.List;
 
-public interface  OrganizationsService {
+public interface OrganizationsService {
 
 
     /**

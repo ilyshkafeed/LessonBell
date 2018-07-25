@@ -74,7 +74,6 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
 
-
     public void flush() {
         em.flush();
     }

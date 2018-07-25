@@ -2,8 +2,6 @@ package ru.bellintegrator.practice.api.office.dao;
 
 import ru.bellintegrator.practice.api.office.findings.OfficeList;
 import ru.bellintegrator.practice.api.office.model.Office;
-import ru.bellintegrator.practice.api.organization.findings.OrganizationList;
-import ru.bellintegrator.practice.api.organization.model.Organization;
 
 import java.util.List;
 
@@ -31,7 +29,6 @@ public interface OfficeDao {
 
     /**
      * Метод для отправки данных в бд.
-     *
      */
     void flush();
 }

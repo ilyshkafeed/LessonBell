@@ -18,5 +18,4 @@ public class ResultView implements StaticView {
     }
 
 
-
 }

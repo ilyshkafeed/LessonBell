@@ -1,11 +1,11 @@
 $(document).ready(function () {
     $("#ping").click(function () {
         $.ajax({
-            url:"/ping",
-            type:"GET",
-            contentType:"application/json; charset=utf-8",
-            dataType:"text",
-            success: function(result){
+            url: "/ping",
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "text",
+            success: function (result) {
                 console.log(result);
                 alert(result);
             }
@@ -21,11 +21,11 @@ $(document).ready(function () {
         console.log('PER', person);
 
         $.ajax({
-            url:"/person",
-            type:"POST",
+            url: "/person",
+            type: "POST",
             data: JSON.stringify(person),
-            contentType:"application/json; charset=utf-8",
-            success: function(){
+            contentType: "application/json; charset=utf-8",
+            success: function () {
                 alert('Success');
             }
         });
@@ -35,11 +35,11 @@ $(document).ready(function () {
 
     $("#personList").click(function () {
         $.ajax({
-            url:"/person",
-            type:"GET",
-            contentType:"application/json; charset=utf-8",
-            dataType:"json",
-            success: function(result){
+            url: "/person",
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
                 console.log(result);
                 alert(JSON.stringify(result));
             }

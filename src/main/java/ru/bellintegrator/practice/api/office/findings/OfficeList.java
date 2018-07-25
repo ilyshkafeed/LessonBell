@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
-public class OfficeList{
+public class OfficeList {
     @NotNull
     private Integer orgId;
 
@@ -44,6 +44,7 @@ public class OfficeList{
     public String getPhone() {
         return phone;
     }
+
     @JsonProperty("isActive")
     public Boolean isActive() {
         return isActive;

@@ -21,7 +21,8 @@ public interface OrganizationDao {
      * @param data фильтры
      * @return
      */
-     List<Organization> getShortList(OrganizationList data);
+    List<Organization> getShortList(OrganizationList data);
+
     /**
      * Получить обект по id
      *
@@ -32,9 +33,9 @@ public interface OrganizationDao {
 
     /**
      * Метод для отправки данных в бд.
-     *
      */
     void flush();
+
     void save(Organization org);
 
 }

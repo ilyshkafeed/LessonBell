@@ -44,7 +44,6 @@ public class Application {
     }
 
 
-
     @Bean
     public Docket postApi() {
         return new Docket(DocumentationType.SWAGGER_2)

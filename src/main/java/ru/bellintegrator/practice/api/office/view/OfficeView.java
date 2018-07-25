@@ -1,7 +1,6 @@
 package ru.bellintegrator.practice.api.office.view;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
 import ru.bellintegrator.practice.api.office.model.Office;
 
 public class OfficeView {
@@ -16,6 +15,7 @@ public class OfficeView {
     public OfficeView() {
 
     }
+
     public OfficeView(Office o) {
         id = o.getId();
         name = o.getName();

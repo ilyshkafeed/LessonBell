@@ -1,9 +1,5 @@
 package ru.bellintegrator.practice.api.exception.view;
 
-import ru.bellintegrator.practice.api.exception.RequiredFieldException;
-
-import java.util.List;
-
 public class TextExceptionView implements ExceptionView {
 
     private String error;

@@ -21,8 +21,6 @@ public class OfficeUpdate {
     private String name;
 
 
-
-
     @NotNull(message = "Поле 'address' не может быть пустым")
     @Size(max = 255, message = "Размер 'address' не должно привышать 255 символов")
     private String address;

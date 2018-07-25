@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.bellintegrator.practice.annotations.AutoWrapping;
-import ru.bellintegrator.practice.utilits.ValidateUtilits;
 import ru.bellintegrator.practice.api.exception.view.TextExceptionView;
 import ru.bellintegrator.practice.api.organization.findings.OrganizationList;
 import ru.bellintegrator.practice.api.organization.findings.OrganizationSave;
@@ -18,7 +17,7 @@ import ru.bellintegrator.practice.api.organization.service.OrganizationsService;
 import ru.bellintegrator.practice.api.organization.view.OrganizationListView;
 import ru.bellintegrator.practice.api.organization.view.OrganizationView;
 import ru.bellintegrator.practice.api.view.ResultView;
-import ru.bellintegrator.practice.api.view.StaticView;
+import ru.bellintegrator.practice.utilits.ValidateUtilits;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -112,6 +111,6 @@ public class OrganizationController {
         organizationsService.save(info);
         return ResultView.SUCCESS;
     }
-    
+
 
 }

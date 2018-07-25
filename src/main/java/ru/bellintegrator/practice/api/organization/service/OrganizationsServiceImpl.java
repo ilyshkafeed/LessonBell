@@ -32,7 +32,6 @@ public class OrganizationsServiceImpl implements OrganizationsService {
     }
 
 
-
     /**
      * {@inheritDoc}
      */

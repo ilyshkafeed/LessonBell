@@ -6,19 +6,17 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.bellintegrator.practice.api.exception.view.TextExceptionView;
+import ru.bellintegrator.practice.api.office.findings.OfficeList;
 import ru.bellintegrator.practice.api.office.findings.OfficeSave;
 import ru.bellintegrator.practice.api.office.findings.OfficeUpdate;
 import ru.bellintegrator.practice.api.office.service.OfficeService;
-import ru.bellintegrator.practice.utilits.ValidateUtilits;
-import ru.bellintegrator.practice.api.exception.view.TextExceptionView;
-import ru.bellintegrator.practice.api.office.findings.OfficeList;
 import ru.bellintegrator.practice.api.office.view.ListView;
 import ru.bellintegrator.practice.api.office.view.OfficeView;
 import ru.bellintegrator.practice.api.view.ResultView;
-import ru.bellintegrator.practice.api.view.StaticView;
+import ru.bellintegrator.practice.utilits.ValidateUtilits;
 
 import javax.validation.Valid;
-import java.util.Collections;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;

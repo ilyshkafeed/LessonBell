@@ -1,7 +1,5 @@
 package ru.bellintegrator.practice.api.user.view;
 
-import io.swagger.annotations.ApiModelProperty;
-
 import javax.validation.constraints.Size;
 
 public class UserView {

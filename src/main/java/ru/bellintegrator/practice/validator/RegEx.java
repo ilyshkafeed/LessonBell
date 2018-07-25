@@ -12,6 +12,8 @@ public @interface RegEx {
     String value();
 
     String message() default "{RegEx}";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

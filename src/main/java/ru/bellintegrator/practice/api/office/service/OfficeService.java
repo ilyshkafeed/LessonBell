@@ -3,7 +3,6 @@ package ru.bellintegrator.practice.api.office.service;
 import ru.bellintegrator.practice.api.office.findings.OfficeList;
 import ru.bellintegrator.practice.api.office.findings.OfficeSave;
 import ru.bellintegrator.practice.api.office.findings.OfficeUpdate;
-import ru.bellintegrator.practice.api.office.model.Office;
 import ru.bellintegrator.practice.api.office.view.ListView;
 import ru.bellintegrator.practice.api.office.view.OfficeView;
 

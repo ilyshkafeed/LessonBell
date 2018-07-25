@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.bellintegrator.practice.api.user.view.UserView;
 
-
 import java.util.Collections;
 import java.util.List;
 
