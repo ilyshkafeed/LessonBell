@@ -58,8 +58,8 @@ public class OfficeController {
      */
     @ApiOperation(value = "getOffice", nickname = "getOffice", httpMethod = "GET")
     @GetMapping("/{id}")
-    public OfficeView getOffice(@PathVariable long id) {
-        return new OfficeView();
+    public OfficeView getOffice(@PathVariable int id) {
+        return officeService.get(id);
     }
 
 

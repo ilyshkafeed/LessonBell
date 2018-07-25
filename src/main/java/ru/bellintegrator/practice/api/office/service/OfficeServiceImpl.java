@@ -2,11 +2,12 @@ package ru.bellintegrator.practice.api.office.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.api.office.dao.OfficeDao;
 import ru.bellintegrator.practice.api.office.findings.OfficeList;
 import ru.bellintegrator.practice.api.office.model.Office;
 import ru.bellintegrator.practice.api.office.view.ListView;
-import ru.bellintegrator.practice.api.organization.dao.OrganizationDao;
+import ru.bellintegrator.practice.api.office.view.OfficeView;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,11 +27,14 @@ public class OfficeServiceImpl implements OfficeService {
 
 
     @Override
-    public Office get(int id) {
-        return null;
+    @Transactional(readOnly = true)
+    public OfficeView get(int id) {
+        Office o = dao.get(id);
+        return new OfficeView(o);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ListView> getList(OfficeList param) {
         return dao.getList(param).stream()
                 .map(p -> new ListView(p.getId(), p.getName(), p.isActive()))
@@ -38,11 +42,13 @@ public class OfficeServiceImpl implements OfficeService {
     }
 
     @Override
+    @Transactional
     public List<Office> save(OfficeList param) {
         return null;
     }
 
     @Override
+    @Transactional
     public List<Office> update(OfficeList param) {
         return null;
     }

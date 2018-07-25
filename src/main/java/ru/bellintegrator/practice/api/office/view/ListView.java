@@ -8,8 +8,10 @@ public class ListView {
     private int id;
     private String name;
     private boolean isActive;
+
     public ListView() {
     }
+
     public ListView(int id, String name, boolean isActive) {
         this.id = id;
         this.name = name;

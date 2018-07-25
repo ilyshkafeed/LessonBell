@@ -1,6 +1,8 @@
 package ru.bellintegrator.practice.api.office.model;
 
 
+import org.hibernate.proxy.HibernateProxy;
+import org.hibernate.proxy.LazyInitializer;
 import ru.bellintegrator.practice.api.organization.model.Organization;
 
 import javax.persistence.*;
@@ -29,7 +31,6 @@ public class Office implements Serializable {
 
 
 
-
     @Column
     boolean isActive = true;
 
@@ -52,6 +53,10 @@ public class Office implements Serializable {
         return organization;
     }
 
+    public Integer getOrganizationId() {
+        LazyInitializer initializer = ((HibernateProxy) getOrganization()).getHibernateLazyInitializer();
+        return (Integer) initializer.getIdentifier();
+    }
     public String getName() {
         return name;
     }
@@ -63,6 +68,8 @@ public class Office implements Serializable {
     public String getPhone() {
         return phone;
     }
+
+
 
     @Column(name = "is_active")
     public boolean isActive() {
@@ -86,6 +93,8 @@ public class Office implements Serializable {
     public void setActive(boolean active) {
         isActive = active;
     }
+
+
 
 
 }

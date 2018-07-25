@@ -1,26 +1,88 @@
 package ru.bellintegrator.practice.api.office.view;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import ru.bellintegrator.practice.api.office.model.Office;
 
 public class OfficeView {
 
 
-    public long id;
-    @ApiModelProperty(hidden = true)
-    public long ordId;
-    public String name;
+    private int id;
+    private String name;
+    private int organizationId;
+    private String address;
+    private String phone;
+    private boolean isActive;
 
-    public String address;
-    public String phone;
-    public boolean isActive;
+    public OfficeView() {
 
+    }
+    public OfficeView(Office o) {
+        id = o.getId();
+        organizationId = o.getOrganizationId();
+        name = o.getName();
+        address = o.getAddress();
+        phone = o.getPhone();
+        isActive = o.isActive();
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public int getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(int organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @JsonProperty("isActive")
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 
     @Override
     public String toString() {
         return "OfficeView{" +
                 "id=" + id +
-                ", ordId=" + ordId +
                 ", name='" + name + '\'' +
+                ", organization=" + organizationId +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", isActive=" + isActive +
