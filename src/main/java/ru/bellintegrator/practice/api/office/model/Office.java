@@ -37,6 +37,12 @@ public class Office implements Serializable {
 
     }
 
+    public Office(Integer id, String name, boolean isActive) {
+        this.id = id;
+        this.name = name;
+        this.isActive = isActive;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -1,11 +1,16 @@
 package ru.bellintegrator.practice.api.office.controller;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.bellintegrator.practice.api.ValidateUtilits;
+import ru.bellintegrator.practice.api.office.service.OfficeService;
+import ru.bellintegrator.practice.utilits.ValidateUtilits;
+import ru.bellintegrator.practice.api.exception.view.TextExceptionView;
 import ru.bellintegrator.practice.api.office.findings.OfficeList;
+import ru.bellintegrator.practice.api.office.view.ListView;
 import ru.bellintegrator.practice.api.office.view.OfficeView;
 import ru.bellintegrator.practice.api.view.ResultView;
 import ru.bellintegrator.practice.api.view.StaticView;
@@ -19,11 +24,12 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping(value = "/api/office", produces = APPLICATION_JSON_VALUE)
 public class OfficeController {
+    private final OfficeService officeService;
 
 
     @Autowired
-    public OfficeController() {
-
+    public OfficeController(OfficeService officeService) {
+        this.officeService = officeService;
     }
 
     /**
@@ -32,11 +38,15 @@ public class OfficeController {
      * @param param
      * @return {@link List}<{@link OfficeView}> список компаний.
      */
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
+    })
     @ApiOperation(value = "getOffices", nickname = "getOffices", httpMethod = "POST")
     @PostMapping("/list")
-    public List<OfficeView> getOffices(@Valid @RequestBody OfficeList param, BindingResult bindingResult) {
+    public List<ListView> getOffices(@Valid @RequestBody OfficeList param, BindingResult bindingResult) {
         ValidateUtilits.validateBindingResult(bindingResult);
-        return Collections.emptyList();
+        return officeService.getList(param);
     }
 
 
