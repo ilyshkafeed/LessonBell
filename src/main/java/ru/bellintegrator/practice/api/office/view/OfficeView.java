@@ -14,6 +14,7 @@ public class OfficeView {
 
     public OfficeView() {
 
+
     }
 
     public OfficeView(Office o) {

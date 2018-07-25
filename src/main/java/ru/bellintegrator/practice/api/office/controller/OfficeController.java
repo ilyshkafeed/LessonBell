@@ -36,7 +36,7 @@ public class OfficeController {
      * Полоучить полный список офисов одной компании, позможен фильтр
      *
      * @param param
-     * @return {@link List}<{@link OfficeView}> список компаний.
+     * @return {@link List}<{@link ListView}> список компаний.
      */
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
