@@ -94,7 +94,7 @@ public class Office implements Serializable {
         isActive = active;
     }
 
-
-
-
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
 }

@@ -3,11 +3,17 @@ package ru.bellintegrator.practice.api.office.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.bellintegrator.practice.api.exception.NoEentityFoundForQueryException;
 import ru.bellintegrator.practice.api.office.dao.OfficeDao;
 import ru.bellintegrator.practice.api.office.findings.OfficeList;
+import ru.bellintegrator.practice.api.office.findings.OfficeSave;
+import ru.bellintegrator.practice.api.office.findings.OfficeUpdate;
 import ru.bellintegrator.practice.api.office.model.Office;
 import ru.bellintegrator.practice.api.office.view.ListView;
 import ru.bellintegrator.practice.api.office.view.OfficeView;
+import ru.bellintegrator.practice.api.organization.dao.OrganizationDao;
+import ru.bellintegrator.practice.api.organization.model.Organization;
+import ru.bellintegrator.practice.utilits.PhoneUtility;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,9 +25,11 @@ import java.util.stream.Collectors;
 public class OfficeServiceImpl implements OfficeService {
 
     private final OfficeDao dao;
+    private final OrganizationDao ogrDao;
 
     @Autowired
-    public OfficeServiceImpl(OfficeDao dao) {
+    public OfficeServiceImpl(OfficeDao dao, OrganizationDao orgDao) {
+        this.ogrDao = orgDao;
         this.dao = dao;
     }
 
@@ -43,13 +51,56 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public List<Office> save(OfficeList param) {
-        return null;
+    public void save(OfficeSave param) {
+        Organization org = getOrganization(param.getOrgId());
+        Office o = new Office();
+        o.setName(param.getName());
+        o.setAddress(param.getAddress());
+        o.setOrganization(org);
+        if (param.getPhone() != null) {
+            o.setPhone(PhoneUtility.phoneToStandard(param.getPhone()));
+        }
+        if (param.isActive() != null) {
+            o.setActive(param.isActive());
+        }
+        dao.save(o);
+        dao.flush();
     }
 
     @Override
     @Transactional
-    public List<Office> update(OfficeList param) {
-        return null;
+    public void update(OfficeUpdate param) {
+        Office o = getOffice(param.getId());
+        o.setName(param.getName());
+        o.setAddress(param.getAddress());
+        if (param.getPhone() != null) {
+            o.setPhone(PhoneUtility.phoneToStandard(param.getPhone()));
+        }
+        if (param.isActive() != null) {
+            o.setActive(param.isActive());
+        }
+        if (param.getOrgId() != null) {
+            Organization org = getOrganization(param.getOrgId());
+            o.setOrganization(org);
+        }
+        dao.flush();
     }
+
+
+    private Organization getOrganization(int id) {
+        Organization org = ogrDao.get(id);
+        if (org == null) {
+            throw new NoEentityFoundForQueryException();
+        }
+        return org;
+    }
+
+    private Office getOffice(int id) {
+        Office org = dao.get(id);
+        if (org == null) {
+            throw new NoEentityFoundForQueryException();
+        }
+        return org;
+    }
+
 }

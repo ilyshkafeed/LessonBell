@@ -66,7 +66,7 @@ public class OfficeDaoImpl implements OfficeDao {
     }
 
     @Override
-    public void save(Organization org) {
+    public void save(Office org) {
         em.persist(org);
     }
 

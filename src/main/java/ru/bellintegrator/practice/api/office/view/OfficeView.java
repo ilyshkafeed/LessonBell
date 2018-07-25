@@ -9,7 +9,6 @@ public class OfficeView {
 
     private int id;
     private String name;
-    private int organizationId;
     private String address;
     private String phone;
     private boolean isActive;
@@ -19,7 +18,6 @@ public class OfficeView {
     }
     public OfficeView(Office o) {
         id = o.getId();
-        organizationId = o.getOrganizationId();
         name = o.getName();
         address = o.getAddress();
         phone = o.getPhone();
@@ -43,14 +41,6 @@ public class OfficeView {
         this.name = name;
     }
 
-
-    public int getOrganizationId() {
-        return organizationId;
-    }
-
-    public void setOrganizationId(int organizationId) {
-        this.organizationId = organizationId;
-    }
 
     public String getAddress() {
         return address;
@@ -82,7 +72,6 @@ public class OfficeView {
         return "OfficeView{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", organization=" + organizationId +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", isActive=" + isActive +

@@ -22,7 +22,8 @@ public class OrganizationList {
     @Size(min = 10, max = 10, message = "Размер 'inn' должен быть 10")
     private String inn;
 
-    private Boolean active;
+    @JsonProperty("isActive")
+    private Boolean isActive;
 
 
     public OrganizationList() {
@@ -36,17 +37,16 @@ public class OrganizationList {
         return name;
     }
 
-    @JsonProperty("isActive")
     public Boolean isActive() {
-        return active;
+        return isActive;
     }
 
     @Override
     public String toString() {
         return "OrganizationList{" +
-                "inn='" + (inn == null ? "" : inn) + '\'' +
-                ", name='" + (name == null ? "" : name) + '\'' +
-                ", isActive=" + (active == null ? "" : active) +
+                "name='" + name + '\'' +
+                ", inn='" + inn + '\'' +
+                ", isActive=" + isActive +
                 '}';
     }
 }

@@ -107,7 +107,7 @@ public class OrganizationController {
             @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
     })
     @PostMapping("/save")
-    public StaticView save(@RequestBody OrganizationSave info, BindingResult bindingResult) {
+    public ResultView save(@RequestBody OrganizationSave info, BindingResult bindingResult) {
         ValidateUtilits.validateBindingResult(bindingResult);
         organizationsService.save(info);
         return ResultView.SUCCESS;

@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.bellintegrator.practice.api.office.findings.OfficeSave;
+import ru.bellintegrator.practice.api.office.findings.OfficeUpdate;
 import ru.bellintegrator.practice.api.office.service.OfficeService;
 import ru.bellintegrator.practice.utilits.ValidateUtilits;
 import ru.bellintegrator.practice.api.exception.view.TextExceptionView;
@@ -56,6 +58,10 @@ public class OfficeController {
      * @param id id компании.
      * @return {@link OfficeView} С полной информацией о компании.
      */
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
+    })
     @ApiOperation(value = "getOffice", nickname = "getOffice", httpMethod = "GET")
     @GetMapping("/{id}")
     public OfficeView getOffice(@PathVariable int id) {
@@ -69,9 +75,15 @@ public class OfficeController {
      * @param updateInfo {@link OfficeView} Новая инормация о компании.
      * @return Статус выполнения.
      */
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
+    })
     @ApiOperation(value = "update", nickname = "update", httpMethod = "POST")
-    @GetMapping("/update")
-    public StaticView update(@RequestBody OfficeView updateInfo) {
+    @PostMapping("/update")
+    public ResultView update(@Valid @RequestBody OfficeUpdate updateInfo, BindingResult bindingResult) {
+        ValidateUtilits.validateBindingResult(bindingResult);
+        officeService.update(updateInfo);
         return ResultView.SUCCESS;
     }
 
@@ -82,9 +94,14 @@ public class OfficeController {
      * @param info переданная информация
      * @return статус
      */
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
+    })
     @ApiOperation(value = "flush", nickname = "flush", httpMethod = "POST")
-    @GetMapping("/save")
-    public StaticView save(@RequestBody OfficeView info) {
+    @PostMapping("/save")
+    public ResultView save(@RequestBody OfficeSave info) {
+        officeService.save(info);
         return ResultView.SUCCESS;
     }
 

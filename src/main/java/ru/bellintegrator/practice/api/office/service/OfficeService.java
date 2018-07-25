@@ -1,6 +1,8 @@
 package ru.bellintegrator.practice.api.office.service;
 
 import ru.bellintegrator.practice.api.office.findings.OfficeList;
+import ru.bellintegrator.practice.api.office.findings.OfficeSave;
+import ru.bellintegrator.practice.api.office.findings.OfficeUpdate;
 import ru.bellintegrator.practice.api.office.model.Office;
 import ru.bellintegrator.practice.api.office.view.ListView;
 import ru.bellintegrator.practice.api.office.view.OfficeView;
@@ -13,8 +15,8 @@ public interface OfficeService {
 
     List<ListView> getList(OfficeList param);
 
-    List<Office> save(OfficeList param);
+    void save(OfficeSave param);
 
-    List<Office> update(OfficeList param);
+    void update(OfficeUpdate param);
 
 }

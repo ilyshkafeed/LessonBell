@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.api.organization.findings;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.bellintegrator.practice.utilits.ValidateUtilits;
 import ru.bellintegrator.practice.validator.Phone;
 import ru.bellintegrator.practice.validator.RegEx;
@@ -37,6 +38,7 @@ public class OrganizationUpdate {
     @Phone(message = "Введен неправильный телефон")
     private String phone;
 
+    @JsonProperty("isActive")
     private Boolean isActive;
 
     public OrganizationUpdate() {
