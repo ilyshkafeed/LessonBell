@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.bellintegrator.practice.api.exception.NoEentityFoundForQueryException;
+import ru.bellintegrator.practice.api.exception.NoEntityFoundForQueryException;
 import ru.bellintegrator.practice.api.organization.dao.OrganizationDao;
 import ru.bellintegrator.practice.api.organization.findings.OrganizationList;
 import ru.bellintegrator.practice.api.organization.findings.OrganizationSave;
@@ -54,13 +54,13 @@ public class OrganizationsServiceImpl implements OrganizationsService {
     @Override
     @Transactional(readOnly = true)
     public OrganizationView get(int id) {
-        return new OrganizationView(getOrganizationDao(id));
+        return new OrganizationView(getOrganization(id));
     }
 
-    private Organization getOrganizationDao(int id) {
+    private Organization getOrganization(int id) {
         Organization org = dao.get(id);
         if (org == null) {
-            throw new NoEentityFoundForQueryException();
+            throw new NoEntityFoundForQueryException("Organization");
         }
         return org;
     }
@@ -69,7 +69,7 @@ public class OrganizationsServiceImpl implements OrganizationsService {
     @Override
     @Transactional
     public void update(OrganizationUpdate updateInfo) {
-        Organization org = getOrganizationDao(updateInfo.getId());
+        Organization org = getOrganization(updateInfo.getId());
         org.setName(updateInfo.getName());
         org.setFullName(updateInfo.getFullName());
         org.setInn(updateInfo.getInn());

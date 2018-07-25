@@ -3,7 +3,7 @@ package ru.bellintegrator.practice.api.office.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.bellintegrator.practice.api.exception.NoEentityFoundForQueryException;
+import ru.bellintegrator.practice.api.exception.NoEntityFoundForQueryException;
 import ru.bellintegrator.practice.api.office.dao.OfficeDao;
 import ru.bellintegrator.practice.api.office.findings.OfficeList;
 import ru.bellintegrator.practice.api.office.findings.OfficeSave;
@@ -90,7 +90,7 @@ public class OfficeServiceImpl implements OfficeService {
     private Organization getOrganization(int id) {
         Organization org = ogrDao.get(id);
         if (org == null) {
-            throw new NoEentityFoundForQueryException();
+            throw new NoEntityFoundForQueryException("Organization");
         }
         return org;
     }
@@ -98,7 +98,7 @@ public class OfficeServiceImpl implements OfficeService {
     private Office getOffice(int id) {
         Office org = dao.get(id);
         if (org == null) {
-            throw new NoEentityFoundForQueryException();
+            throw new NoEntityFoundForQueryException("Office");
         }
         return org;
     }
