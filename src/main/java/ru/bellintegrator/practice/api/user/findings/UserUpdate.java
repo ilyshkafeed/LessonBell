@@ -13,6 +13,8 @@ public class UserUpdate {
     @NotNull(message = "Поле 'id' не может быть пустым")
     private Integer id;
 
+    private Integer officeId;
+
     @NotNull(message = "Поле 'firstName' не может быть пустым")
     @Size(min = 1, max = 50, message = "Размер 'firstName' должен быть от 1 до 50 символов")
     private String firstName;
@@ -31,21 +33,72 @@ public class UserUpdate {
     @Phone
     private String phone;
 
-    private Integer officeId;
 
+    @Size(max = 255, message = "Размер 'docName' не должно привышать 255 символов")
     private String docName;
 
+    @Size(max = 255, message = "Размер 'docNumber' не должно привышать 255 символов")
     private String docNumber;
 
     private Date docDate;
 
+    private Short citizenshipCode;
 
-
-
+    private Boolean isIdentified;
 
 
     public UserUpdate() {
     }
 
 
+    @NotNull
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getOfficeId() {
+        return officeId;
+    }
+
+    @NotNull
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    @NotNull
+    public String getPosition() {
+        return position;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getDocName() {
+        return docName;
+    }
+
+    public String getDocNumber() {
+        return docNumber;
+    }
+
+    public Date getDocDate() {
+        return docDate;
+    }
+
+    public Short getCitizenshipCode() {
+        return citizenshipCode;
+    }
+
+    public Boolean getIdentified() {
+        return isIdentified;
+    }
 }

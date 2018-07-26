@@ -80,7 +80,7 @@ public class UserController {
             @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
     })
     @ApiOperation(value = "update", nickname = "update", httpMethod = "POST")
-    @GetMapping("/update")
+    @PostMapping("/update")
     public ResultView update(@Valid @RequestBody UserUpdate updateInfo, BindingResult bindingResult) {
         ValidateUtilits.validateBindingResult(bindingResult);
         userService.update(updateInfo);
@@ -99,7 +99,7 @@ public class UserController {
             @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
     })
     @ApiOperation(value = "flush", nickname = "flush", httpMethod = "POST")
-    @GetMapping("/save")
+    @PostMapping("/save")
     public ResultView save(@Valid @RequestBody UserSave info, BindingResult bindingResult) {
         ValidateUtilits.validateBindingResult(bindingResult);
         return ResultView.SUCCESS;

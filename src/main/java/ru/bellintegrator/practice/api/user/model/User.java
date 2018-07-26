@@ -180,7 +180,7 @@ public class User implements Serializable {
         this.docDate = docDate;
     }
 
-    public void setCitizenshipCode(Countries citizenship) {
+    public void setCitizenship(Countries citizenship) {
         this.citizenship = citizenship;
     }
 

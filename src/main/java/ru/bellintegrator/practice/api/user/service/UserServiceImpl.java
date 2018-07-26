@@ -15,6 +15,8 @@ import ru.bellintegrator.practice.api.user.findings.UserUpdate;
 import ru.bellintegrator.practice.api.user.model.User;
 import ru.bellintegrator.practice.api.user.view.ListView;
 import ru.bellintegrator.practice.api.user.view.UserView;
+import ru.bellintegrator.practice.api.сountries.dao.CountriesDao;
+import ru.bellintegrator.practice.api.сountries.model.Countries;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,12 +30,14 @@ public class UserServiceImpl implements UserService {
     private final OfficeDao officeDao;
     private final UserDao dao;
     private final DocDao docDao;
+    private final CountriesDao countriesDao;
 
     @Autowired
-    public UserServiceImpl(OfficeDao officeDao, UserDao dao, DocDao docDao) {
+    public UserServiceImpl(OfficeDao officeDao, UserDao dao, DocDao docDao, CountriesDao countriesDao) {
         this.officeDao = officeDao;
         this.dao = dao;
         this.docDao = docDao;
+        this.countriesDao = countriesDao;
     }
 
 
@@ -71,25 +75,37 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void update(UserUpdate param) {
+        User user = getUser(param.getId());
 
-//        User user = getUser(param.getId());
-//
-//
-//
-//        Office o = getOffice(param.getId());
+        user.setFirstName(param.getFirstName());
+        user.setPosition(param.getPosition());
 
-//        o.setName(param.getName());
-//        o.setAddress(param.getAddress());
-//        if (param.getPhone() != null) {
-//            o.setPhone(PhoneUtility.phoneToStandard(param.getPhone()));
-//        }
-//        if (param.isActive() != null) {
-//            o.setActive(param.isActive());
-//        }
-//        if (param.getOrgId() != null) {
-//            Organization org = getOrganization(param.getOrgId());
-//            o.setOrganization(org);
-//        }
+        if (param.getLastName() != null) {
+            user.setLastName(param.getLastName());
+        }
+        if (param.getMiddleName() != null) {
+            user.setMiddleName(param.getMiddleName());
+        }
+        if (param.getPhone() != null) {
+            user.setPhone(param.getPhone());
+        }
+        if (param.getDocName() != null) {
+            Doc doc = docFindByName(param.getDocName());
+            user.setDoc(doc);
+        }
+        if (param.getDocNumber() != null) {
+            user.setDocNumber(param.getDocNumber());
+        }
+        if (param.getDocDate() != null) {
+            user.setDocDate(param.getDocDate());
+        }
+        if (param.getCitizenshipCode() != null) {
+            Countries countries = countriesFindByCode(param.getCitizenshipCode());
+            user.setCitizenship(countries);
+        }
+        if (param.getIdentified() != null) {
+            user.setIdentified(param.getIdentified());
+        }
         dao.flush();
     }
 
@@ -111,32 +127,54 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    private class DocUtility {
-        private Doc getDoc(int id) {
-            Doc org = docDao.get(id);
-            if (org == null) {
-                throw new NoEntityFoundForQueryException("Docs");
-            }
-            return org;
+    private Doc getDoc(int id) {
+        Doc org = docDao.get(id);
+        if (org == null) {
+            throw new NoEntityFoundForQueryException("Docs");
         }
-
-        private Doc findByCode(int code) {
-            Doc org = docDao.findByCode(code);
-            if (org == null) {
-                throw new NoEntityFoundForQueryException("Docs");
-            }
-            return org;
-        }
-
-        private Doc findByName(String name) {
-            Doc org = docDao.findByName(name);
-            if (org == null) {
-                throw new NoEntityFoundForQueryException("Docs");
-            }
-            return org;
-        }
-
+        return org;
     }
+
+    private Doc docFindByCode(int code) {
+        Doc org = docDao.findByCode(code);
+        if (org == null) {
+            throw new NoEntityFoundForQueryException("Docs");
+        }
+        return org;
+    }
+
+    private Doc docFindByName(String name) {
+        Doc org = docDao.findByName(name);
+        if (org == null) {
+            throw new NoEntityFoundForQueryException("Docs");
+        }
+        return org;
+    }
+
+    private Countries getCountries(int id) {
+        Countries org = countriesDao.get(id);
+        if (org == null) {
+            throw new NoEntityFoundForQueryException("Countries");
+        }
+        return org;
+    }
+
+    private Countries countriesFindByCode(int code) {
+        Countries org = countriesDao.findByCode(code);
+        if (org == null) {
+            throw new NoEntityFoundForQueryException("Countries");
+        }
+        return org;
+    }
+
+    private Countries countriesFindByName(String name) {
+        Countries org = countriesDao.findByName(name);
+        if (org == null) {
+            throw new NoEntityFoundForQueryException("Countries");
+        }
+        return org;
+    }
+
 }
 
 
