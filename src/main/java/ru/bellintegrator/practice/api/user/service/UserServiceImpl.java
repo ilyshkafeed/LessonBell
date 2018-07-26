@@ -3,6 +3,8 @@ package ru.bellintegrator.practice.api.user.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.bellintegrator.practice.api.docs.dao.DocDao;
+import ru.bellintegrator.practice.api.docs.model.Doc;
 import ru.bellintegrator.practice.api.exception.NoEntityFoundForQueryException;
 import ru.bellintegrator.practice.api.office.dao.OfficeDao;
 import ru.bellintegrator.practice.api.office.model.Office;
@@ -25,11 +27,13 @@ public class UserServiceImpl implements UserService {
 
     private final OfficeDao officeDao;
     private final UserDao dao;
+    private final DocDao docDao;
 
     @Autowired
-    public UserServiceImpl(OfficeDao officeDao, UserDao dao) {
+    public UserServiceImpl(OfficeDao officeDao, UserDao dao, DocDao docDao) {
         this.officeDao = officeDao;
         this.dao = dao;
+        this.docDao = docDao;
     }
 
 
@@ -106,4 +110,33 @@ public class UserServiceImpl implements UserService {
         return org;
     }
 
+
+    private class DocUtility {
+        private Doc getDoc(int id) {
+            Doc org = docDao.get(id);
+            if (org == null) {
+                throw new NoEntityFoundForQueryException("Docs");
+            }
+            return org;
+        }
+
+        private Doc findByCode(int code) {
+            Doc org = docDao.findByCode(code);
+            if (org == null) {
+                throw new NoEntityFoundForQueryException("Docs");
+            }
+            return org;
+        }
+
+        private Doc findByName(String name) {
+            Doc org = docDao.findByName(name);
+            if (org == null) {
+                throw new NoEntityFoundForQueryException("Docs");
+            }
+            return org;
+        }
+
+    }
 }
+
+

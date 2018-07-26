@@ -66,11 +66,11 @@ public class UserDaoImpl implements UserDao {
         }
         if (data.getDocCode() != null) {
             // WHERE doc_code = :docCode:
-            cq.where(cb.equal(orgRoot.get(User_.docCode), data.getDocCode()));
+            cq.where(cb.equal(orgRoot.get(User_.doc), data.getDocCode()));
         }
         if (data.getCitizenshipCode() != null) {
             // WHERE citizenship_code = :citizenship_code:
-            cq.where(cb.equal(orgRoot.get(User_.citizenshipCode), data.getCitizenshipCode()));
+            cq.where(cb.equal(orgRoot.get(User_.citizenship), data.getCitizenshipCode()));
         }
 
         TypedQuery<User> query = em.createQuery(cq);

@@ -5,7 +5,10 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.proxy.LazyInitializer;
+import ru.bellintegrator.practice.api.docs.model.Doc;
 import ru.bellintegrator.practice.api.office.model.Office;
+import ru.bellintegrator.practice.api.сountries.model.Countries;
+import ru.bellintegrator.practice.utilits.PhoneUtility;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -49,9 +52,11 @@ public class User implements Serializable {
     private String phone;
 
     // Тип документа
-    // TODO Сделать связь с обектом документов.
-    @Column(name = "doc_code")
-    private Integer docCode;
+    @ManyToOne(
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(name = "doc_code")
+    private Doc doc;
 
     // номер документа
     @Column(name = "doc_number")
@@ -63,9 +68,11 @@ public class User implements Serializable {
     private Date docDate;
 
     // Id номера страны
-    // TODO Сделать свзяь с стаблицей (обектом) страны
-    @Column(name = "citizenship_code")
-    private Integer citizenshipCode;
+    @ManyToOne(
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(name = "citizenship_code")
+    private Countries citizenship;
 
     // Проверенный пользователь
     @Column(name = "is_identified")
@@ -113,8 +120,8 @@ public class User implements Serializable {
         return position;
     }
 
-    public Integer getDocCode() {
-        return docCode;
+    public Doc getDoc() {
+        return doc;
     }
 
     public String getDocNumber() {
@@ -125,8 +132,8 @@ public class User implements Serializable {
         return docDate;
     }
 
-    public Integer getCitizenshipCode() {
-        return citizenshipCode;
+    public Countries getCitizenship() {
+        return citizenship;
     }
 
     public boolean isIdentified() {
@@ -161,8 +168,8 @@ public class User implements Serializable {
         this.position = position;
     }
 
-    public void setDocCode(Integer docCode) {
-        this.docCode = docCode;
+    public void setDoc(Doc doc) {
+        this.doc = doc;
     }
 
     public void setDocNumber(String docNumber) {
@@ -173,8 +180,8 @@ public class User implements Serializable {
         this.docDate = docDate;
     }
 
-    public void setCitizenshipCode(Integer citizenshipCode) {
-        this.citizenshipCode = citizenshipCode;
+    public void setCitizenshipCode(Countries citizenship) {
+        this.citizenship = citizenship;
     }
 
     public void setIdentified(boolean identified) {
@@ -182,6 +189,6 @@ public class User implements Serializable {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.phone = PhoneUtility.phoneToStandard(phone);
     }
 }

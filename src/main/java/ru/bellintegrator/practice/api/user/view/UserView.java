@@ -14,10 +14,12 @@ public class UserView {
     private String middleName;
     private String position;
     private String phone;
-    private Integer docCode;
+    private Byte docCode;
+    private String docName;
     private String docNumber;
     private Date docDate;
-    private Integer citizenshipCode;
+    private Short citizenshipCode;
+    private String citizenshipName;
     private Boolean isIdentified;
 
 
@@ -26,17 +28,26 @@ public class UserView {
 
     public UserView(User user) {
         setId(user.getId());
+        // Офис
         setOfficeId(user.getOfficeId());
+        setPosition(user.getPosition());
+        // ФИО
         setFirstName(user.getFirstName());
         setLastName(user.getLastName());
         setMiddleName(user.getMiddleName());
-        setPosition(user.getPosition());
-        setDocCode(user.getDocCode());
+        // Телефон
+        setPhone(user.getPhone());
+        // Документ
+        setDocCode(user.getDoc().getCode());
+        setDocName(user.getDoc().getName());
         setDocNumber(user.getDocNumber());
         setDocDate(user.getDocDate());
-        setCitizenshipCode(user.getCitizenshipCode());
+        // Страна
+        setCitizenshipCode(user.getCitizenship().getCode());
+        setCitizenshipName(user.getCitizenship().getName());
+        // Статус верификации
         setIdentified(user.isIdentified());
-        setPosition(user.getPhone());
+
     }
 
 
@@ -65,8 +76,8 @@ public class UserView {
         return position;
     }
 
-    public Integer getDocCode() {
-        return docCode;
+    public String getDocName() {
+        return docName;
     }
 
     public String getDocNumber() {
@@ -77,8 +88,12 @@ public class UserView {
         return docDate;
     }
 
-    public Integer getCitizenshipCode() {
+    public Short getCitizenshipCode() {
         return citizenshipCode;
+    }
+
+    public String getCitizenshipName() {
+        return citizenshipName;
     }
 
     public Boolean getIsIdentified() {
@@ -87,6 +102,10 @@ public class UserView {
 
     public String getPhone() {
         return phone;
+    }
+
+    public Byte getDocCode() {
+        return docCode;
     }
 
     public void setId(Integer id) {
@@ -113,8 +132,8 @@ public class UserView {
         this.position = position;
     }
 
-    public void setDocCode(Integer docCode) {
-        this.docCode = docCode;
+    public void setDocName(String docName) {
+        this.docName = docName;
     }
 
     public void setDocNumber(String docNumber) {
@@ -125,8 +144,12 @@ public class UserView {
         this.docDate = docDate;
     }
 
-    public void setCitizenshipCode(Integer citizenshipCode) {
+    public void setCitizenshipCode(Short citizenshipCode) {
         this.citizenshipCode = citizenshipCode;
+    }
+
+    public void setCitizenshipName(String citizenshipName) {
+        this.citizenshipName = citizenshipName;
     }
 
     public void setIdentified(Boolean isIdentified) {
@@ -135,5 +158,9 @@ public class UserView {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public void setDocCode(Byte docCode) {
+        this.docCode = docCode;
     }
 }
