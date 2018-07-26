@@ -11,7 +11,8 @@ import java.util.Date;
 @StaticMetamodel(User.class)
 public abstract class User_ {
     public static volatile SingularAttribute<User, Integer> id;
-    public static volatile SingularAttribute<User, Office> firstName;
+    public static volatile SingularAttribute<User, Office> office;
+    public static volatile SingularAttribute<User, String> firstName;
     public static volatile SingularAttribute<User, String> lastName;
     public static volatile SingularAttribute<User, String> middleName;
     public static volatile SingularAttribute<User, String> position;

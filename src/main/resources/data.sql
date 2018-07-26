@@ -17,7 +17,7 @@ insert into `doc` (`id`,`version`,`code`, `name`) values
 insert into `country` (`id`,`version`,`code`, `name`) values
   (1,0, 643, 'Российская Федерация');
 
-insert into `user` (`id`,`version`, `office_id`, `first_name`, `last_name`, `middle_name`, `position`, `doc_code`, `doc_number`, `doc_date`, `citizenship_code`, `is_identified`) VALUES
-  (1, 0, 1, 'Илья',  'Мослов',   'Петрович', 'Ведущий программист', 3,  '1234 123456',  PARSEDATETIME('02/02/2001','dd/mm/yyyy'), 1, 1),
-  (2, 0, 1, 'Артем', 'Сорокин',  'Людовик',  'Программист',         3,  '1234 123456',  PARSEDATETIME('02/02/2001','dd/mm/yyyy'), 1, 1),
-  (3, 0, 3, 'Ваня',  'Максимов', 'Зайцевич', 'Директор',            3,  '1234 123456',  PARSEDATETIME('02/02/2001','dd/mm/yyyy'), 1, 1);
+insert into `user` (`id`,`version`, `office_id`, `first_name`, `last_name`, `middle_name`, `position`,`phone`, `doc_code`, `doc_number`, `doc_date`, `citizenship_code`, `is_identified`) VALUES
+  (1, 0, 1, 'Илья',  'Мослов',   'Петрович', 'Ведущий программист','+7 801 123-45-67', 3,  '1234 123456',  PARSEDATETIME('02/02/2001','dd/mm/yyyy'), 1, 1),
+  (2, 0, 1, 'Артем', 'Сорокин',  'Людовик',  'Программист',        '+7 802 123-45-67', 3,  '1234 123456',  PARSEDATETIME('02/02/2001','dd/mm/yyyy'), 1, 1),
+  (3, 0, 3, 'Ваня',  'Максимов', 'Зайцевич', 'Директор',           '+7 803 123-45-67', 3,  '1234 123456',  PARSEDATETIME('02/02/2001','dd/mm/yyyy'), 1, 1);

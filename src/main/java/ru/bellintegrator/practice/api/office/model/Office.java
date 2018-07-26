@@ -1,12 +1,16 @@
 package ru.bellintegrator.practice.api.office.model;
 
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.proxy.LazyInitializer;
 import ru.bellintegrator.practice.api.organization.model.Organization;
+import ru.bellintegrator.practice.api.user.model.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class Office implements Serializable {
@@ -29,8 +33,16 @@ public class Office implements Serializable {
     @JoinColumn(name = "organization_id")
     private Organization organization;
 
+    @OneToMany(
+            mappedBy = "office",
+            cascade=CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private Set<User> users;
 
-    @Column
+
+    @Column(name = "is_active")
     boolean isActive = true;
 
     public Office() {
@@ -69,8 +81,6 @@ public class Office implements Serializable {
         return phone;
     }
 
-
-    @Column(name = "is_active")
     public boolean isActive() {
         return isActive;
     }
@@ -88,7 +98,6 @@ public class Office implements Serializable {
         this.phone = phone;
     }
 
-    @Column(name = "is_active")
     public void setActive(boolean active) {
         isActive = active;
     }

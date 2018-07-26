@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `user`(
   `last_name`         VARCHAR(50)     NOT NULL DEFAULT '',
   `middle_name`       VARCHAR(50)     NOT NULL DEFAULT '',
   `position`          VARCHAR(255)    NOT NULL,
+  `phone`             VARCHAR(50)     NOT NULL DEFAULT '',
   `doc_code`          INTEGER         REFERENCES `doc`(`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   `doc_number`        VARCHAR(255)    NOT NULL DEFAULT '',
   `doc_date`          DATE,

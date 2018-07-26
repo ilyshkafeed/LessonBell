@@ -1,10 +1,11 @@
 package ru.bellintegrator.practice.api.user.model;
 
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.proxy.LazyInitializer;
 import ru.bellintegrator.practice.api.office.model.Office;
-import ru.bellintegrator.practice.api.organization.model.Organization;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,24 +24,29 @@ public class User implements Serializable {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "office_id")
     private Office office;
 
     //Имя
-    @Column(name = "first_name",length = 50, nullable = false)
+    @Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
 
     //Фамилия
-    @Column(name = "last_name",length = 50, nullable = false)
+    @Column(name = "last_name", length = 50, nullable = false)
     private String lastName;
 
     //Отчество или чтото еще для иностранных гражданинов
-    @Column(name = "middle_name",length = 50, nullable = false)
+    @Column(name = "middle_name", length = 50, nullable = false)
     private String middleName;
 
     // Должность
     @Column(nullable = false)
     private String position;
+
+
+    @Column
+    private String phone;
 
     // Тип документа
     // TODO Сделать связь с обектом документов.
@@ -52,7 +58,7 @@ public class User implements Serializable {
     private String docNumber;
 
     // Дата документа
-    @Column(name = "doc_date",nullable = false)
+    @Column(name = "doc_date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date docDate;
 
@@ -69,12 +75,26 @@ public class User implements Serializable {
 
     }
 
+    public User(Integer id, String firstName, String lastName, String middleName, String position) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.position = position;
+    }
+
+    //======= getters and setters
     public Integer getId() {
         return id;
     }
 
     public Office getOffice() {
         return office;
+    }
+
+    public Integer getOfficeId() {
+        LazyInitializer initializer = ((HibernateProxy) getOffice()).getHibernateLazyInitializer();
+        return (Integer) initializer.getIdentifier();
     }
 
     public String getFirstName() {
@@ -111,6 +131,10 @@ public class User implements Serializable {
 
     public boolean isIdentified() {
         return isIdentified;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public void setId(Integer id) {
@@ -155,5 +179,9 @@ public class User implements Serializable {
 
     public void setIdentified(boolean identified) {
         isIdentified = identified;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
