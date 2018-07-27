@@ -27,7 +27,6 @@ public class User implements Serializable {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "office_id")
     private Office office;
 
@@ -36,12 +35,12 @@ public class User implements Serializable {
     private String firstName;
 
     //Фамилия
-    @Column(name = "last_name", length = 50, nullable = false)
-    private String lastName;
+    @Column(name = "last_name", length = 50)
+    private String lastName = "";
 
     //Отчество или чтото еще для иностранных гражданинов
-    @Column(name = "middle_name", length = 50, nullable = false)
-    private String middleName;
+    @Column(name = "middle_name", length = 50)
+    private String middleName = "";
 
     // Должность
     @Column(nullable = false)
@@ -49,7 +48,7 @@ public class User implements Serializable {
 
 
     @Column
-    private String phone;
+    private String phone= "";
 
     // Тип документа
     @ManyToOne(
@@ -60,10 +59,10 @@ public class User implements Serializable {
 
     // номер документа
     @Column(name = "doc_number")
-    private String docNumber;
+    private String docNumber = "";
 
     // Дата документа
-    @Column(name = "doc_date", nullable = false)
+    @Column(name = "doc_date")
     @Temporal(TemporalType.DATE)
     private Date docDate;
 

@@ -38,13 +38,17 @@ public class UserView {
         // Телефон
         setPhone(user.getPhone());
         // Документ
-        setDocCode(user.getDoc().getCode());
-        setDocName(user.getDoc().getName());
-        setDocNumber(user.getDocNumber());
-        setDocDate(user.getDocDate());
+        if (user.getDoc() != null) {
+            setDocCode(user.getDoc().getCode());
+            setDocName(user.getDoc().getName());
+            setDocNumber(user.getDocNumber());
+            setDocDate(user.getDocDate());
+        }
         // Страна
-        setCitizenshipCode(user.getCitizenship().getCode());
-        setCitizenshipName(user.getCitizenship().getName());
+        if (user.getCitizenship() != null) {
+            setCitizenshipCode(user.getCitizenship().getCode());
+            setCitizenshipName(user.getCitizenship().getName());
+        }
         // Статус верификации
         setIdentified(user.isIdentified());
 

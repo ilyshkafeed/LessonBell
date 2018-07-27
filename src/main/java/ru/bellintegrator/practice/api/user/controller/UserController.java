@@ -102,6 +102,7 @@ public class UserController {
     @PostMapping("/save")
     public ResultView save(@Valid @RequestBody UserSave info, BindingResult bindingResult) {
         ValidateUtilits.validateBindingResult(bindingResult);
+        userService.save(info);
         return ResultView.SUCCESS;
     }
 

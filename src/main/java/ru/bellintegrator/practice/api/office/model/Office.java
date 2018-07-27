@@ -105,4 +105,5 @@ public class Office implements Serializable {
     public void setOrganization(Organization organization) {
         this.organization = organization;
     }
+
 }

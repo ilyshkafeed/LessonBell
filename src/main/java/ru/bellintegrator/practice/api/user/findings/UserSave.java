@@ -1,59 +1,98 @@
 package ru.bellintegrator.practice.api.user.findings;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import ru.bellintegrator.practice.utilits.ValidateUtilits;
 import ru.bellintegrator.practice.validator.Phone;
-import ru.bellintegrator.practice.validator.RegEx;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 
 public class UserSave {
 
+    @NotNull(message = "Поле 'officeId' не может быть пустым")
+    private Integer officeId;
 
-    @NotNull(message = "Поле 'name' не может быть пустым")
-    @Size(min = 1, max = 50, message = "Размер 'name' должен быть от 1 до 50 символов")
-    @RegEx(value = ValidateUtilits.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
-    private String name;
+    @NotNull(message = "Поле 'firstName' не может быть пустым")
+    @Size(min = 1, max = 50, message = "Размер 'firstName' должен быть от 1 до 50 символов")
+    private String firstName;
 
+    @Size(max = 50, message = "Размер 'lastName' не должно привышать 50 символов")
+    private String lastName;
 
-    private Integer orgId;
+    @Size(max = 50, message = "Размер 'lastName' не должно привышать 50 символов")
+    private String middleName;
 
-    @NotNull(message = "Поле 'address' не может быть пустым")
-    @Size(max = 255, message = "Размер 'address' не должно привышать 255 символов")
-    private String address;
+    @NotNull(message = "Поле 'position' не может быть пустым")
+    @Size(max = 255, message = "Размер 'lastName' не должно привышать 255 символов")
+    private String position;
 
-    @Phone(message = "Введен неправильный телефон")
+    @Size(max = 50, message = "Размер 'phone' не должно привышать 50 символов")
+    @Phone
     private String phone;
 
-    @JsonProperty("isActive")
-    private Boolean isActive;
+
+    @Size(max = 255, message = "Размер 'docName' не должно привышать 255 символов")
+    private String docName;
+
+    @Size(max = 255, message = "Размер 'docNumber' не должно привышать 255 символов")
+    private String docNumber;
+
+    private Date docDate;
+
+    private Short citizenshipCode;
+
+    private Boolean isIdentified;
 
 
-    @NotNull
-    public String getName() {
-        return name;
+    public UserSave() {
     }
 
 
     @NotNull
-    public String getAddress() {
-        return address;
+    public Integer getOfficeId() {
+        return officeId;
     }
 
+    @NotNull
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    @NotNull
+    public String getPosition() {
+        return position;
+    }
 
     public String getPhone() {
         return phone;
     }
 
-
-    public Integer getOrgId() {
-        return orgId;
+    public String getDocName() {
+        return docName;
     }
 
-    public Boolean isActive() {
-        return isActive;
+    public String getDocNumber() {
+        return docNumber;
+    }
+
+    public Date getDocDate() {
+        return docDate;
+    }
+
+    public Short getCitizenshipCode() {
+        return citizenshipCode;
+    }
+
+    public Boolean getIdentified() {
+        return isIdentified;
     }
 }

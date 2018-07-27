@@ -58,17 +58,41 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void save(UserSave param) {
-        User o = new User();
-        if (param.getOrgId() != null) {
-            o.setOffice(getOffice(param.getOrgId()));
+        User user = new User();
+
+        user.setFirstName(param.getFirstName());
+        user.setPosition(param.getPosition());
+
+        Office office = getOffice(param.getOfficeId());
+        user.setOffice(office);
+
+        if (param.getLastName() != null) {
+            user.setLastName(param.getLastName());
         }
-//        if (param.getPhone() != null) {
-//            o.setPhone(PhoneUtility.phoneToStandard(param.getPhone()));
-//        }
-//        if (param.isActive() != null) {
-//            o.setActive(param.isActive());
-//        }
-        dao.save(o);
+        if (param.getMiddleName() != null) {
+            user.setMiddleName(param.getMiddleName());
+        }
+        if (param.getPhone() != null) {
+            user.setPhone(param.getPhone());
+        }
+        if (param.getDocName() != null) {
+            Doc doc = docFindByName(param.getDocName());
+            user.setDoc(doc);
+        }
+        if (param.getDocNumber() != null) {
+            user.setDocNumber(param.getDocNumber());
+        }
+        if (param.getDocDate() != null) {
+            user.setDocDate(param.getDocDate());
+        }
+        if (param.getCitizenshipCode() != null) {
+            Countries countries = countriesFindByCode(param.getCitizenshipCode());
+            user.setCitizenship(countries);
+        }
+        if (param.getIdentified() != null) {
+            user.setIdentified(param.getIdentified());
+        }
+        dao.save(user);
         dao.flush();
     }
 
@@ -80,6 +104,10 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(param.getFirstName());
         user.setPosition(param.getPosition());
 
+        if(param.getOfficeId()!=null){
+            Office office = getOffice(param.getOfficeId());
+            user.setOffice(office);
+        }
         if (param.getLastName() != null) {
             user.setLastName(param.getLastName());
         }
@@ -111,11 +139,11 @@ public class UserServiceImpl implements UserService {
 
 
     private User getUser(int id) {
-        User org = dao.get(id);
-        if (org == null) {
+        User user = dao.get(id);
+        if (user == null) {
             throw new NoEntityFoundForQueryException("User");
         }
-        return org;
+        return user;
     }
 
     private Office getOffice(int id) {
