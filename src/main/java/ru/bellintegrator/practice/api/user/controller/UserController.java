@@ -68,6 +68,22 @@ public class UserController {
         return userService.get(id);
     }
 
+    /**
+     * Удалить пользователя
+     *
+     * @param id id компании.
+     * @return {@link UserView} С полной информацией о пользователе.
+     */
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
+    })
+    @ApiOperation(value = "delete", nickname = "delete", httpMethod = "GET")
+    @GetMapping("/{id}/delete")
+    public ResultView deleteUser(@PathVariable int id) {
+        userService.delete(id);
+        return ResultView.SUCCESS;
+    }
 
     /**
      * Обновить запись пользователя.

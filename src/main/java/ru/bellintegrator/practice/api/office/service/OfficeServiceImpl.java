@@ -42,6 +42,13 @@ public class OfficeServiceImpl implements OfficeService {
     }
 
     @Override
+    @Transactional
+    public void delete(int id) {
+        Office office = getOffice(id);
+        dao.delete(office);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<ListView> getList(OfficeList param) {
         return dao.getList(param).stream()

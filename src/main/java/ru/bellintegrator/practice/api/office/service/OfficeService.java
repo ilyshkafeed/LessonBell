@@ -11,6 +11,7 @@ import java.util.List;
 public interface OfficeService {
 
     OfficeView get(int id);
+    void delete(int id);
 
     List<ListView> getList(OfficeList param);
 

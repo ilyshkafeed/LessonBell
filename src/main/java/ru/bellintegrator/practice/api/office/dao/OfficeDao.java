@@ -25,7 +25,8 @@ public interface OfficeDao {
     List<Office> getList(OfficeList data);
 
 
-    void save(Office org);
+    void save(Office office);
+    void delete(Office office);
 
     /**
      * Метод для отправки данных в бд.

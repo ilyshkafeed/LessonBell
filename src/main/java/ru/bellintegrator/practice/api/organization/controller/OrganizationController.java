@@ -76,17 +76,17 @@ public class OrganizationController {
 
 
     /**
-     * Получить подробную информацию о компании.
+     * Удалить организацию.
      *
      * @param id id компании.
-     * @return {@link OrganizationView} С полной информацией о компании.
+     * @return {@link ResultView}
      */
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
     })
-    @ApiOperation(value = "Delete", nickname = "Delete", httpMethod = "GET")
-    @GetMapping("/delete/{id}")
+    @ApiOperation(value = "delete", nickname = "delete", httpMethod = "GET")
+    @GetMapping("/{id}/delete")
     public ResultView deleteOrganization(@PathVariable int id) {
         organizationsService.delete(id);
         return ResultView.SUCCESS;

@@ -65,8 +65,16 @@ public class OfficeDaoImpl implements OfficeDao {
     }
 
     @Override
-    public void save(Office org) {
-        em.persist(org);
+    public void save(Office office) {
+        em.persist(office);
+    }
+
+    @Override
+    public void delete(Office office) {
+        if (!em.contains(office)) {
+            office = em.merge(office);
+        }
+        em.remove(office);
     }
 
     @Override

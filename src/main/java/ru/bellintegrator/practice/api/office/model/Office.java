@@ -27,8 +27,7 @@ public class Office implements Serializable {
     private String phone = "";
 
     @ManyToOne(
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
+            fetch = FetchType.LAZY
     )
     @JoinColumn(name = "organization_id")
     private Organization organization;

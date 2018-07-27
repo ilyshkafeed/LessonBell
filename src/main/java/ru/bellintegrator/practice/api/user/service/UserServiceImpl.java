@@ -48,6 +48,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void delete(int id) {
+        User user = getUser(id);
+        dao.delete(user);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<ListView> getList(UserList param) {
         return dao.getList(param).stream()
@@ -104,7 +110,7 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(param.getFirstName());
         user.setPosition(param.getPosition());
 
-        if(param.getOfficeId()!=null){
+        if (param.getOfficeId() != null) {
             Office office = getOffice(param.getOfficeId());
             user.setOffice(office);
         }

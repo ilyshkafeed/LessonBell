@@ -13,6 +13,8 @@ public interface UserService {
 
     UserView get(int id);
 
+    void delete(int id);
+
     List<ListView> getList(UserList param);
 
     void save(UserSave param);

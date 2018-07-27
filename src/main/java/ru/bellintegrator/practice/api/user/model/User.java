@@ -24,8 +24,7 @@ public class User implements Serializable {
     private Integer version;
 
     @ManyToOne(
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
+            fetch = FetchType.LAZY
     )
     @JoinColumn(name = "office_id")
     private Office office;

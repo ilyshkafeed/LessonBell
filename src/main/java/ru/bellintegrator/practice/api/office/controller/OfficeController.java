@@ -66,6 +66,23 @@ public class OfficeController {
         return officeService.get(id);
     }
 
+    /**
+     * Удаление офиса
+     *
+     * @param id id компании.
+     * @return {@link OfficeView} С полной информацией о компании.
+     */
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request", response = TextExceptionView.class)
+    })
+    @ApiOperation(value = "delete", nickname = "delete", httpMethod = "GET")
+    @GetMapping("/{id}/delete")
+    public ResultView deleteOffice(@PathVariable int id) {
+        officeService.delete(id);
+        return ResultView.SUCCESS;
+    }
+
 
     /**
      * Обновить запись офиса.
