@@ -55,7 +55,7 @@ public class Office implements Serializable {
     }
 
 
-    public void addOffice(User user) {
+    public void addUser(User user) {
         getUsers().add(user);
         user.setOffice(this);
     }

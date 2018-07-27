@@ -48,6 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void delete(int id) {
         User user = getUser(id);
         dao.delete(user);
@@ -56,6 +57,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(readOnly = true)
     public List<ListView> getList(UserList param) {
+        getOffice(param.getOfficeId());
         return dao.getList(param).stream()
                 .map(p -> new ListView(p.getId(), p.getLastName(), p.getFirstName(), p.getMiddleName(), p.getPosition()))
                 .collect(Collectors.toList());
@@ -70,7 +72,7 @@ public class UserServiceImpl implements UserService {
         user.setPosition(param.getPosition());
 
         Office office = getOffice(param.getOfficeId());
-        user.setOffice(office);
+        office.addUser(user);
 
         if (param.getLastName() != null) {
             user.setLastName(param.getLastName());
@@ -112,7 +114,8 @@ public class UserServiceImpl implements UserService {
 
         if (param.getOfficeId() != null) {
             Office office = getOffice(param.getOfficeId());
-            user.setOffice(office);
+            user.getOffice().getUsers().remove(user);
+            office.addUser(user);
         }
         if (param.getLastName() != null) {
             user.setLastName(param.getLastName());
