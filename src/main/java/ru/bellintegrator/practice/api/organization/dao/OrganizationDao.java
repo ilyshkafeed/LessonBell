@@ -37,5 +37,6 @@ public interface OrganizationDao {
     void flush();
 
     void save(Organization org);
+    void delete(Organization org);
 
 }

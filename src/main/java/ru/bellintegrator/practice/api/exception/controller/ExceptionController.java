@@ -16,7 +16,7 @@ public class ExceptionController {
 
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<TextExceptionView> exception(Exception e) {
-        LOG.warn(e.getMessage(), e);
+        LOG.debug(e.getMessage(), e);
         return new ResponseEntity<>(new TextExceptionView(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 

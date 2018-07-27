@@ -82,4 +82,12 @@ public class OrganizationDaoImpl implements OrganizationDao {
     public void save(Organization org) {
         em.persist(org);
     }
+
+    @Override
+    public void delete(Organization org) {
+        if (!em.contains(org)) {
+            org = em.merge(org);
+        }
+        em.remove(org);
+    }
 }

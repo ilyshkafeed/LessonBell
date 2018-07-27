@@ -75,7 +75,7 @@ public class User implements Serializable {
 
     // Проверенный пользователь
     @Column(name = "is_identified")
-    private boolean isIdentified = true;
+    private boolean isIdentified = false;
 
     public User() {
 

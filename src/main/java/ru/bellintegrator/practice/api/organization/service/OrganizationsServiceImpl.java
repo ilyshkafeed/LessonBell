@@ -56,6 +56,13 @@ public class OrganizationsServiceImpl implements OrganizationsService {
         return new OrganizationView(getOrganization(id));
     }
 
+    @Override
+    @Transactional
+    public void delete(int id) {
+        Organization org = getOrganization(id);
+        dao.delete(org);
+    }
+
     private Organization getOrganization(int id) {
         Organization org = dao.get(id);
         if (org == null) {

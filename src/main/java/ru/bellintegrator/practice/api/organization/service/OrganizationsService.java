@@ -28,6 +28,8 @@ public interface OrganizationsService {
 
     OrganizationView get(int id);
 
+    void delete(int id);
+
     void update(OrganizationUpdate updateInfo);
 
 
