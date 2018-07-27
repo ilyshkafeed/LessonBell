@@ -51,6 +51,7 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     @Transactional(readOnly = true)
     public List<ListView> getList(OfficeList param) {
+        getOrganization(param.getOrgId());
         return dao.getList(param).stream()
                 .map(p -> new ListView(p.getId(), p.getName(), p.isActive()))
                 .collect(Collectors.toList());
@@ -63,7 +64,7 @@ public class OfficeServiceImpl implements OfficeService {
         Office o = new Office();
         o.setName(param.getName());
         o.setAddress(param.getAddress());
-        o.setOrganization(org);
+        org.addOffice(o);
         if (param.getPhone() != null) {
             o.setPhone(PhoneUtility.phoneToStandard(param.getPhone()));
         }
@@ -87,8 +88,9 @@ public class OfficeServiceImpl implements OfficeService {
             o.setActive(param.isActive());
         }
         if (param.getOrgId() != null) {
+            o.getOrganization().getOffices().remove(o);
             Organization org = getOrganization(param.getOrgId());
-            o.setOrganization(org);
+            org.addOffice(o);
         }
         dao.flush();
     }
