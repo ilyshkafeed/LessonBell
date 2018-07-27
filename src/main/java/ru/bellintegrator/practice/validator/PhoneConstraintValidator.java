@@ -13,7 +13,10 @@ public class PhoneConstraintValidator implements ConstraintValidator<Phone, Stri
 
     @Override
     public boolean isValid(String phoneField, ConstraintValidatorContext cxt) {
-        return phoneField == null || phoneField.matches("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
+        if (phoneField == null) return true;
+        String numberOnly = phoneField.replaceAll("[^0-9+]", "");
+        return (numberOnly.length() == 11)
+                && phoneField.matches("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
     }
 
 }

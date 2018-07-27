@@ -30,7 +30,7 @@ public class UserUpdate {
     private String position;
 
     @Size(max = 50, message = "Размер 'phone' не должно привышать 50 символов")
-    @Phone
+    @Phone(message = "Неправильный формат телефона")
     private String phone;
 
 
