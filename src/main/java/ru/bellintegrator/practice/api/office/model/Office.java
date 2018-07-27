@@ -34,7 +34,7 @@ public class Office implements Serializable {
 
     @OneToMany(
             mappedBy = "office",
-            cascade=CascadeType.ALL,
+            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
     @OnDelete(action = OnDeleteAction.NO_ACTION)
@@ -54,19 +54,22 @@ public class Office implements Serializable {
         this.isActive = isActive;
     }
 
-    public Integer getId() {
-        return id;
+
+    public void addOffice(User user) {
+        getUsers().add(user);
+        user.setOffice(this);
     }
 
-
-    public Organization getOrganization() {
-        return organization;
-    }
 
     public Integer getOrganizationId() {
         LazyInitializer initializer = ((HibernateProxy) getOrganization()).getHibernateLazyInitializer();
         return (Integer) initializer.getIdentifier();
     }
+
+    public Integer getId() {
+        return id;
+    }
+
 
     public String getName() {
         return name;
@@ -78,6 +81,14 @@ public class Office implements Serializable {
 
     public String getPhone() {
         return phone;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public Set<User> getUsers() {
+        return users;
     }
 
     public boolean isActive() {
@@ -97,12 +108,11 @@ public class Office implements Serializable {
         this.phone = phone;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
     public void setOrganization(Organization organization) {
         this.organization = organization;
     }
 
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 }

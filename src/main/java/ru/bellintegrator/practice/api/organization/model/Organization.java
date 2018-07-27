@@ -88,6 +88,11 @@ public class Organization implements Serializable {
     }
 
 
+    public void addOffice(Office office) {
+        getOffices().add(office);
+        office.setOrganization(this);
+    }
+
     //getter-ы
     public Integer getId() {
         return id;
@@ -156,6 +161,9 @@ public class Organization implements Serializable {
         isActive = active;
     }
 
+
+
+
     @Override
     public String toString() {
         return "Organization{" +
@@ -169,4 +177,7 @@ public class Organization implements Serializable {
                 ", isActive=" + isActive +
                 '}';
     }
+
+
+
 }
