@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
+@EntityListeners(OfficeListener.class)
 public class Office implements Serializable {
     @Id
     @GeneratedValue
@@ -37,7 +38,7 @@ public class Office implements Serializable {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<User> users;
 
 

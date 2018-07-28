@@ -1,12 +1,14 @@
 package ru.bellintegrator.practice.api.user.model;
 
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.EmptyInterceptor;
 import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.proxy.LazyInitializer;
+import org.hibernate.type.Type;
+import org.springframework.context.event.EventListener;
 import ru.bellintegrator.practice.api.docs.model.Doc;
 import ru.bellintegrator.practice.api.office.model.Office;
+import ru.bellintegrator.practice.api.organization.model.OrganizationListener;
 import ru.bellintegrator.practice.api.сountries.model.Countries;
 import ru.bellintegrator.practice.utilits.PhoneUtility;
 
@@ -15,7 +17,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class User implements Serializable {
+@EntityListeners(UserListener.class)
+public class User extends EmptyInterceptor implements Serializable {
     @Id
     @GeneratedValue
     private Integer id;
@@ -47,7 +50,7 @@ public class User implements Serializable {
 
 
     @Column
-    private String phone= "";
+    private String phone = "";
 
     // Тип документа
     @ManyToOne(
@@ -87,6 +90,22 @@ public class User implements Serializable {
         this.middleName = middleName;
         this.position = position;
     }
+
+    //EVENTS
+    @Override
+    public void onDelete(
+            Object entity,
+            Serializable id,
+            Object[] state,
+            String[] propertyNames,
+            Type[] types) {
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>> user");
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>> " + this);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+    }
+
 
     //======= getters and setters
     public Integer getId() {

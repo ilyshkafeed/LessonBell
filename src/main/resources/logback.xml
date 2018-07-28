@@ -25,7 +25,7 @@
             <pattern>%d{HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
         </encoder>
     </appender>
-
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
         <!--<appender-ref ref="FILE" />-->

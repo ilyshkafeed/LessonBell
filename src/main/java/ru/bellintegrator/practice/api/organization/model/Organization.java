@@ -1,5 +1,7 @@
 package ru.bellintegrator.practice.api.organization.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import ru.bellintegrator.practice.api.office.model.Office;
 
 import javax.persistence.*;
@@ -7,6 +9,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
+@EntityListeners(OrganizationListener.class)
 public class Organization implements Serializable {
 
 
@@ -49,6 +52,7 @@ public class Organization implements Serializable {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Office> offices;
 
 
@@ -86,7 +90,6 @@ public class Organization implements Serializable {
         this.phone = phone;
         this.isActive = isActive;
     }
-
 
     public void addOffice(Office office) {
         getOffices().add(office);
@@ -162,8 +165,6 @@ public class Organization implements Serializable {
     }
 
 
-
-
     @Override
     public String toString() {
         return "Organization{" +
@@ -177,7 +178,6 @@ public class Organization implements Serializable {
                 ", isActive=" + isActive +
                 '}';
     }
-
 
 
 }
