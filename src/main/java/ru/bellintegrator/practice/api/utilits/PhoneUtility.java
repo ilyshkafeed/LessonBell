@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.utilits;
+package ru.bellintegrator.practice.api.utilits;
 
 public class PhoneUtility {
 

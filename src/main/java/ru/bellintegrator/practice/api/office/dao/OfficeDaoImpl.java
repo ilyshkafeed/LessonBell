@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.bellintegrator.practice.api.office.findings.OfficeList;
 import ru.bellintegrator.practice.api.office.model.Office;
 import ru.bellintegrator.practice.api.office.model.Office_;
-import ru.bellintegrator.practice.utilits.PhoneUtility;
+import ru.bellintegrator.practice.api.utilits.PhoneUtility;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

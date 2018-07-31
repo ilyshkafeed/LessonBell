@@ -5,12 +5,10 @@ import org.hibernate.EmptyInterceptor;
 import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.proxy.LazyInitializer;
 import org.hibernate.type.Type;
-import org.springframework.context.event.EventListener;
 import ru.bellintegrator.practice.api.docs.model.Doc;
 import ru.bellintegrator.practice.api.office.model.Office;
-import ru.bellintegrator.practice.api.organization.model.OrganizationListener;
 import ru.bellintegrator.practice.api.сountries.model.Countries;
-import ru.bellintegrator.practice.utilits.PhoneUtility;
+import ru.bellintegrator.practice.api.utilits.PhoneUtility;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,7 +16,7 @@ import java.util.Date;
 
 @Entity
 @EntityListeners(UserListener.class)
-public class User extends EmptyInterceptor implements Serializable {
+public class User implements Serializable {
     @Id
     @GeneratedValue
     private Integer id;
@@ -90,22 +88,6 @@ public class User extends EmptyInterceptor implements Serializable {
         this.middleName = middleName;
         this.position = position;
     }
-
-    //EVENTS
-    @Override
-    public void onDelete(
-            Object entity,
-            Serializable id,
-            Object[] state,
-            String[] propertyNames,
-            Type[] types) {
-
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>> user");
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>> " + this);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
-    }
-
 
     //======= getters and setters
     public Integer getId() {

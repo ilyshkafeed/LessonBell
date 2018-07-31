@@ -14,10 +14,9 @@ import ru.bellintegrator.practice.api.user.service.UserService;
 import ru.bellintegrator.practice.api.user.view.ListView;
 import ru.bellintegrator.practice.api.user.view.UserView;
 import ru.bellintegrator.practice.api.view.ResultView;
-import ru.bellintegrator.practice.utilits.ValidateUtilits;
+import ru.bellintegrator.practice.api.utilits.ValidateUtilits;
 
 import javax.validation.Valid;
-import java.util.Collections;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;

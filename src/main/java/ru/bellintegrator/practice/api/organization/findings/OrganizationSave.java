@@ -1,11 +1,11 @@
 package ru.bellintegrator.practice.api.organization.findings;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ru.bellintegrator.practice.utilits.ValidateUtilits;
+import ru.bellintegrator.practice.api.utilits.ValidateUtilits;
 import ru.bellintegrator.practice.validator.Phone;
-import ru.bellintegrator.practice.validator.RegEx;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 /**
@@ -16,12 +16,12 @@ public class OrganizationSave {
 
     @NotNull(message = "Поле 'name' не может быть пустым")
     @Size(min = 2, max = 50, message = "Размер 'name' должен быть от 2 до 50 символов")
-    @RegEx(value = ValidateUtilits.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
+    @Pattern(regexp = ValidateUtilits.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
     private String name;
 
     @NotNull(message = "Поле 'fullName' не может быть пустым")
     @Size(min = 2, max = 255, message = "Размер 'name' должен быть от 2 до 255 символов")
-    @RegEx(value = ValidateUtilits.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
+    @Pattern(regexp = ValidateUtilits.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
     private String fullName;
 
     @NotNull(message = "Поле 'inn' не может быть пустым")

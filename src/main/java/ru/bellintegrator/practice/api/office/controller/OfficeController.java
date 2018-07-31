@@ -14,7 +14,7 @@ import ru.bellintegrator.practice.api.office.service.OfficeService;
 import ru.bellintegrator.practice.api.office.view.ListView;
 import ru.bellintegrator.practice.api.office.view.OfficeView;
 import ru.bellintegrator.practice.api.view.ResultView;
-import ru.bellintegrator.practice.utilits.ValidateUtilits;
+import ru.bellintegrator.practice.api.utilits.ValidateUtilits;
 
 import javax.validation.Valid;
 import java.util.List;
