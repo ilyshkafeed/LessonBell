@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.api.organization.findings;
 
+import Utilites.Creator;
 import Utilites.SetField;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import java.util.Set;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-
+//TODO Нужен ли вообще?
 public class OrganizationListTest {
 
 
@@ -26,46 +27,35 @@ public class OrganizationListTest {
     }
     @Test
     public void validateName__null(){
-        OrganizationList org = newOrganizationList(null,"1234567890",true);
+        OrganizationList org = Creator.newOrganizationList(null,"1234567890",true);
         Set<ConstraintViolation<OrganizationList>> violations = validator.validate(org);
         assertFalse(violations.isEmpty());
     }
     @Test
     public void validateName__regex(){
-        OrganizationList org = newOrganizationList("Запрещеные символы: ☺☻♥♦♣♠","1234567890",true);
+        OrganizationList org = Creator.newOrganizationList("Запрещеные символы: ☺☻♥♦♣♠","1234567890",true);
         Set<ConstraintViolation<OrganizationList>> violations = validator.validate(org);
         assertFalse(violations.isEmpty());
     }
     @Test
     public void validateName__min(){
-        OrganizationList org = newOrganizationList("","1234567890",true);
+        OrganizationList org = Creator.newOrganizationList("","1234567890",true);
         Set<ConstraintViolation<OrganizationList>> violations = validator.validate(org);
         assertFalse(violations.isEmpty());
     }
 
     @Test
     public void validateInn__size(){
-        OrganizationList org = newOrganizationList("Имя","1234",true);
+        OrganizationList org = Creator.newOrganizationList("Имя","1234",true);
         Set<ConstraintViolation<OrganizationList>> violations = validator.validate(org);
         assertFalse(violations.isEmpty());
     }
     @Test
     public void validateObj__Ok(){
-        OrganizationList org = newOrganizationList("Имя",null,null);
+        OrganizationList org =Creator.newOrganizationList("Имя",null,null);
         Set<ConstraintViolation<OrganizationList>> violations = validator.validate(org);
         assertTrue(violations.isEmpty());
     }
 
-
-
-
-
-    private OrganizationList newOrganizationList(String name, String inn, Boolean isActive) {
-        OrganizationList organizationList = new OrganizationList();
-        SetField.set(organizationList, "name", name);
-        SetField.set(organizationList, "inn", inn);
-        SetField.set(organizationList, "isActive", isActive);
-        return organizationList;
-    }
 
 }

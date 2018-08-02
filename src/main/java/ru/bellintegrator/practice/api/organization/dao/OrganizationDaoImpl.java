@@ -29,14 +29,10 @@ public class OrganizationDaoImpl implements OrganizationDao {
         this.em = em;
     }
 
-    @Override
-    public List<Organization> all() {
-        return null;
-    }
 
 
     @Override
-    public List<Organization> getShortList(OrganizationList data) {
+    public List<Organization> getList(OrganizationList data) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Organization> cq = cb.createQuery(Organization.class);
         Root<Organization> orgRoot = cq.from(Organization.class);

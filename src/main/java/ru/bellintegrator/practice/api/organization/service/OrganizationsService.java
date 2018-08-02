@@ -11,12 +11,6 @@ import java.util.List;
 public interface OrganizationsService {
 
 
-    /**
-     * Получить список организаций
-     *
-     * @return {@Person}
-     */
-    List<OrganizationView> list();
 
     /**
      * Получить краткий список организаций

@@ -32,14 +32,6 @@ public class OrganizationsServiceImpl implements OrganizationsService {
     }
 
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public List<OrganizationView> list() {
-        return null;
-    }
 
     /**
      * {@inheritDoc}
@@ -47,7 +39,7 @@ public class OrganizationsServiceImpl implements OrganizationsService {
     @Override
     @Transactional(readOnly = true)
     public List<OrganizationListView> shortList(OrganizationList in) {
-        return dao.getShortList(in).stream().map(OrganizationListView::new).collect(Collectors.toList());
+        return dao.getList(in).stream().map(OrganizationListView::new).collect(Collectors.toList());
     }
 
     @Override
@@ -80,9 +72,8 @@ public class OrganizationsServiceImpl implements OrganizationsService {
         org.setFullName(updateInfo.getFullName());
         org.setInn(updateInfo.getInn());
         org.setKpp(updateInfo.getKpp());
-        org.setAddress(updateInfo.getAddress());
-        org.setPhone(PhoneUtility.phoneToStandard(updateInfo.getPhone()));
-        if (updateInfo.getPhone() != null) org.setAddress(updateInfo.getAddress());
+        if (updateInfo.getPhone() != null) org.setPhone(PhoneUtility.phoneToStandard(updateInfo.getPhone()));
+        if (updateInfo.getAddress() != null) org.setAddress(updateInfo.getAddress());
         if (updateInfo.isActive() != null) org.setActive(updateInfo.isActive());
 
         dao.flush();

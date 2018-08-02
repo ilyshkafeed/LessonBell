@@ -7,12 +7,6 @@ import java.util.List;
 
 public interface OrganizationDao {
 
-    /**
-     * Получить все объекты Organization
-     *
-     * @return
-     */
-    List<Organization> all();
 
 
     /**
@@ -21,7 +15,7 @@ public interface OrganizationDao {
      * @param data фильтры
      * @return
      */
-    List<Organization> getShortList(OrganizationList data);
+    List<Organization> getList(OrganizationList data);
 
     /**
      * Получить обект по id
