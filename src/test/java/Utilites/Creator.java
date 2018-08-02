@@ -5,7 +5,7 @@ import ru.bellintegrator.practice.api.organization.findings.OrganizationSave;
 import ru.bellintegrator.practice.api.organization.findings.OrganizationUpdate;
 
 public class Creator {
-
+    // Думаю фабрики для тестов ненужны))
     public static OrganizationList newOrganizationList(String name, String inn, Boolean isActive) {
         OrganizationList organizationList = new OrganizationList();
         SetField.set(organizationList, "name", name);

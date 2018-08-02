@@ -20,16 +20,16 @@ public class OrganizationSave {
     private String name;
 
     @NotNull(message = "Поле 'fullName' не может быть пустым")
-    @Size(min = 2, max = 255, message = "Размер 'name' должен быть от 2 до 255 символов")
+    @Size(min = 2, max = 255, message = "Размер 'fullName' должен быть от 2 до 255 символов")
     @Pattern(regexp = ValidateUtilits.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
     private String fullName;
 
     @NotNull(message = "Поле 'inn' не может быть пустым")
-    @Size(min = 10, max = 10, message = "Размер 'name' должен быть 10 символов")
+    @Size(min = 10, max = 10, message = "Размер 'inn' должен быть 10 символов")
     private String inn;
 
     @NotNull(message = "Поле 'kpp' не может быть пустым")
-    @Size(min = 9, max = 9, message = "Размер 'name' должен быть 9 символов")
+    @Size(min = 9, max = 9, message = "Размер 'kpp' должен быть 9 символов")
     private String kpp;
 
     @NotNull(message = "Поле 'address' не может быть пустым")
@@ -45,31 +45,6 @@ public class OrganizationSave {
 
     public OrganizationSave() {
     }
-
-    public OrganizationSave(String name, String fullName, String inn, String kpp, String address, String phone, Boolean isActive) {
-        this.name = name;
-        this.fullName = fullName;
-        this.inn = inn;
-        this.kpp = kpp;
-        this.address = address;
-        this.phone = phone;
-        this.isActive = isActive;
-    }
-
-
-    @Override
-    public String toString() {
-        return "{" +
-                ", name=\"" + name + '\"' +
-                ", fullName=\"" + fullName + '\"' +
-                ", inn=\"" + inn + '\"' +
-                ", kpp=\"" + kpp + '\"' +
-                ", address=\"" + address + '\"' +
-                ", phone=\"" + phone + '\"' +
-                ", isActive=\"" + isActive + '\"' +
-                '}';
-    }
-
 
     public String getName() {
         return name;

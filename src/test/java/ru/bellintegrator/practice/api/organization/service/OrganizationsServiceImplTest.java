@@ -2,7 +2,10 @@ package ru.bellintegrator.practice.api.organization.service;
 
 import Utilites.Creator;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import ru.bellintegrator.practice.api.exception.NoEntityFoundForQueryException;
 import ru.bellintegrator.practice.api.organization.dao.OrganizationDao;
 import ru.bellintegrator.practice.api.organization.findings.OrganizationList;
 import ru.bellintegrator.practice.api.organization.findings.OrganizationSave;
@@ -22,6 +25,7 @@ import static org.mockito.Mockito.when;
 
 
 public class OrganizationsServiceImplTest {
+
     private OrganizationDao dao = mock(OrganizationDao.class);
     private OrganizationsService organizationsService = new OrganizationsServiceImpl(dao);
 
@@ -37,7 +41,7 @@ public class OrganizationsServiceImplTest {
         ORG_GET.setAddress("street");
         ORG_GET.setInn("1234567890");
         ORG_GET.setKpp("123456789");
-        ORG_GET.setPhone("+7 953 568-15-22");
+        ORG_GET.setPhone("+7 123 123-12-12");
 
         //
         List<Organization> list = new ArrayList<>();
@@ -45,7 +49,7 @@ public class OrganizationsServiceImplTest {
         list.add(ORG_LIST_2);
         when(dao.getList(any(OrganizationList.class))).thenReturn(list);
         when(dao.get(anyInt())).thenReturn(ORG_GET);
-
+        when(dao.get(0)).thenReturn(null);
     }
 
     @Test
@@ -81,6 +85,11 @@ public class OrganizationsServiceImplTest {
         assertEquals(ORG_GET.getPhone(), org.getPhone());
     }
 
+    @Test(expected = NoEntityFoundForQueryException.class)
+    public void get_null() {
+        organizationsService.get(0);
+    }
+
     @Test
     public void delete() {
         organizationsService.delete(1);
@@ -88,13 +97,13 @@ public class OrganizationsServiceImplTest {
 
     @Test
     public void update() {
-        OrganizationUpdate org = Creator.newOrganizationUpdate(1, "new name", "new full name", "1234567890", "123456789", "new street", "+79535681522", true);
+        OrganizationUpdate org = Creator.newOrganizationUpdate(1, "new name", "new full name", "1234567890", "123456789", "new street", "+71231231212", true);
         organizationsService.update(org);
     }
 
     @Test
     public void save() {
-        OrganizationSave org = Creator.newOrganizationSave("new name", "new full name", "1234567890", "123456789", "new street", "+79535681522", true);
+        OrganizationSave org = Creator.newOrganizationSave("new name", "new full name", "1234567890", "123456789", "new street", "+71231231212", true);
         organizationsService.save(org);
     }
 }

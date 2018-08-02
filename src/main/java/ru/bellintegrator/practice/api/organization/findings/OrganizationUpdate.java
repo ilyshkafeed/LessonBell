@@ -44,22 +44,6 @@ public class OrganizationUpdate {
     public OrganizationUpdate() {
     }
 
-
-    @Override
-    public String toString() {
-        return "{" +
-                ", id=\"" + id + '\"' +
-                ", name=\"" + name + '\"' +
-                ", fullName=\"" + fullName + '\"' +
-                ", inn=\"" + inn + '\"' +
-                ", kpp=\"" + kpp + '\"' +
-                ", address=\"" + address + '\"' +
-                ", phone=\"" + phone + '\"' +
-                ", isActive=\"" + isActive + '\"' +
-                '}';
-    }
-
-
     public Integer getId() {
         return id;
     }

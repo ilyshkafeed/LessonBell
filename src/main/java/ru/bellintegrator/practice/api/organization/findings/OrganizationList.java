@@ -41,12 +41,4 @@ public class OrganizationList {
         return isActive;
     }
 
-    @Override
-    public String toString() {
-        return "OrganizationList{" +
-                "name='" + name + '\'' +
-                ", inn='" + inn + '\'' +
-                ", isActive=" + isActive +
-                '}';
-    }
 }
