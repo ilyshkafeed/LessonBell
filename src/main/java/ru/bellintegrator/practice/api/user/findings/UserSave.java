@@ -50,12 +50,11 @@ public class UserSave {
     }
 
 
-    @NotNull
+
     public Integer getOfficeId() {
         return officeId;
     }
 
-    @NotNull
     public String getFirstName() {
         return firstName;
     }
@@ -68,7 +67,6 @@ public class UserSave {
         return middleName;
     }
 
-    @NotNull
     public String getPosition() {
         return position;
     }

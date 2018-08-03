@@ -51,7 +51,6 @@ public class UserUpdate {
     }
 
 
-    @NotNull
     public Integer getId() {
         return id;
     }
@@ -60,7 +59,6 @@ public class UserUpdate {
         return officeId;
     }
 
-    @NotNull
     public String getFirstName() {
         return firstName;
     }
@@ -73,7 +71,6 @@ public class UserUpdate {
         return middleName;
     }
 
-    @NotNull
     public String getPosition() {
         return position;
     }

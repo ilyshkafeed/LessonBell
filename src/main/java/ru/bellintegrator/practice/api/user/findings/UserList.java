@@ -26,7 +26,6 @@ public class UserList {
     private Integer citizenshipCode;
 
 
-    @NotNull
     public Integer getOfficeId() {
         return officeId;
     }
