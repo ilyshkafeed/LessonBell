@@ -1,5 +1,8 @@
 package Utilites;
 
+import ru.bellintegrator.practice.api.office.findings.OfficeList;
+import ru.bellintegrator.practice.api.office.findings.OfficeSave;
+import ru.bellintegrator.practice.api.office.findings.OfficeUpdate;
 import ru.bellintegrator.practice.api.organization.findings.OrganizationList;
 import ru.bellintegrator.practice.api.organization.findings.OrganizationSave;
 import ru.bellintegrator.practice.api.organization.findings.OrganizationUpdate;
@@ -40,4 +43,33 @@ public class Creator {
     }
 
 
+    public static OfficeList newOfficeList(Integer orgId, String name, String phone, Boolean isActive) {
+        OfficeList officeList = new OfficeList();
+        SetField.set(officeList, "orgId", orgId);
+        SetField.set(officeList, "name", name);
+        SetField.set(officeList, "phone", phone);
+        SetField.set(officeList, "isActive", isActive);
+        return officeList;
+    }
+
+    public static OfficeSave newOfficeSave(Integer orgId, String name, String address, String phone, Boolean isActive) {
+        OfficeSave officeSave = new OfficeSave();
+        SetField.set(officeSave, "orgId", orgId);
+        SetField.set(officeSave, "name", name);
+        SetField.set(officeSave, "phone", phone);
+        SetField.set(officeSave, "address", address);
+        SetField.set(officeSave, "isActive", isActive);
+        return officeSave;
+    }
+
+    public static OfficeUpdate newOfficeUpdate(Integer id, Integer orgId, String name, String address, String phone, Boolean isActive) {
+        OfficeUpdate officeUpdate = new OfficeUpdate();
+        SetField.set(officeUpdate, "id", id);
+        SetField.set(officeUpdate, "orgId", orgId);
+        SetField.set(officeUpdate, "name", name);
+        SetField.set(officeUpdate, "address", address);
+        SetField.set(officeUpdate, "phone", phone);
+        SetField.set(officeUpdate, "isActive", isActive);
+        return officeUpdate;
+    }
 }

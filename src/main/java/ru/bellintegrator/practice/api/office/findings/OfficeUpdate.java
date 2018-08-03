@@ -15,6 +15,8 @@ public class OfficeUpdate {
     @NotNull(message = "Поле 'id' не может быть пустым")
     private Integer id;
 
+    private Integer orgId;
+
     @NotNull(message = "Поле 'name' не может быть пустым")
     @Size(min = 1, max = 50, message = "Размер 'name' должен быть от 1 до 50 символов")
     @Pattern(regexp = ValidateUtilits.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
@@ -31,25 +33,19 @@ public class OfficeUpdate {
     @JsonProperty("isActive")
     private Boolean isActive;
 
-    private Integer orgId;
 
-    @NotNull
+
     public Integer getId() {
         return id;
     }
 
-
-    @NotNull
     public String getName() {
         return name;
     }
 
-
-    @NotNull
     public String getAddress() {
         return address;
     }
-
 
     public String getPhone() {
         return phone;

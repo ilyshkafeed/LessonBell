@@ -23,16 +23,6 @@ public class OfficeList {
     private Boolean isActive;
 
 
-    @Override
-    public String toString() {
-        return "OfficeList{" +
-                "orgId=" + orgId +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", isActive=" + isActive +
-                '}';
-    }
-
     public Integer getOrgId() {
         return orgId;
     }

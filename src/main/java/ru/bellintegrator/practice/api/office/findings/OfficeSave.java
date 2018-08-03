@@ -18,7 +18,7 @@ public class OfficeSave {
     @Pattern(regexp  = ValidateUtilits.REGEX_PATTERN_NAME, message = "В имени присудствуют запрещеные символы")
     private String name;
 
-    @NotNull
+    @NotNull(message = "Поле 'orgId' не может быть пустым")
     private Integer orgId;
 
     @NotNull(message = "Поле 'address' не может быть пустым")
@@ -32,13 +32,13 @@ public class OfficeSave {
     private Boolean isActive;
 
 
-    @NotNull
+
     public String getName() {
         return name;
     }
 
 
-    @NotNull
+
     public String getAddress() {
         return address;
     }
@@ -48,7 +48,7 @@ public class OfficeSave {
         return phone;
     }
 
-    @NotNull
+
     public Integer getOrgId() {
         return orgId;
     }
