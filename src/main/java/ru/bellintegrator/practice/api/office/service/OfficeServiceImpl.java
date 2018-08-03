@@ -37,7 +37,7 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     @Transactional(readOnly = true)
     public OfficeView get(int id) {
-        Office o = dao.get(id);
+        Office o = getOffice(id);
         return new OfficeView(o);
     }
 

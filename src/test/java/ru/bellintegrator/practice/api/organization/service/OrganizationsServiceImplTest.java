@@ -32,11 +32,11 @@ public class OrganizationsServiceImplTest {
 
     private final Organization ORG_LIST_1 = new Organization(1, "name 1", true);
     private final Organization ORG_LIST_2 = new Organization(2, "name 2", false);
-
     private final Organization ORG_GET = new Organization(3, "name get", false);
 
+
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
         ORG_GET.setFullName("test full name");
         ORG_GET.setAddress("street");
         ORG_GET.setInn("1234567890");
@@ -56,6 +56,7 @@ public class OrganizationsServiceImplTest {
     public void list() {
         // получение
         OrganizationList orgList = new OrganizationList();
+
         List<OrganizationListView> list = organizationsService.shortList(orgList);
 
         // проверка
