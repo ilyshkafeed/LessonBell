@@ -10,6 +10,9 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 import static junit.framework.TestCase.assertTrue;
@@ -26,25 +29,25 @@ public class OrganizationListTest extends ValidateTest {
 
     }
     @Test
-    public void validateName__null(){
+    public void validateName__notNull(){
         OrganizationList org = Creator.newOrganizationList(null,"1234567890",true);
-        assertFalse(validate(org,"name"));
+        assertFalse(validate(org,"name", NotNull.class));
     }
     @Test
     public void validateName__regex(){
         OrganizationList org = Creator.newOrganizationList("Запрещеные символы: ☺☻♥♦♣♠","1234567890",true);
-        assertFalse(validate(org,"name"));
+        assertFalse(validate(org,"name", Pattern.class));
     }
     @Test
     public void validateName__min(){
         OrganizationList org = Creator.newOrganizationList("","1234567890",true);
-        assertFalse(validate(org,"name"));
+        assertFalse(validate(org,"name", Size.class));
     }
 
     @Test
     public void validateInn__size(){
         OrganizationList org = Creator.newOrganizationList("Имя","1234",true);
-        assertFalse(validate(org,"inn"));
+        assertFalse(validate(org,"inn", Size.class));
     }
     @Test
     public void validateObj__Ok(){

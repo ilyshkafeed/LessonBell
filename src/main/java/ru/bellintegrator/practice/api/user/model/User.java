@@ -98,10 +98,10 @@ public class User implements Serializable {
         return office;
     }
 
-    public Integer getOfficeId() {
-        LazyInitializer initializer = ((HibernateProxy) getOffice()).getHibernateLazyInitializer();
-        return (Integer) initializer.getIdentifier();
-    }
+//    public Integer getOfficeId() {
+//        LazyInitializer initializer = ((HibernateProxy) getOffice()).getHibernateLazyInitializer();
+//        return (Integer) initializer.getIdentifier();
+//    }
 
     public String getFirstName() {
         return firstName;

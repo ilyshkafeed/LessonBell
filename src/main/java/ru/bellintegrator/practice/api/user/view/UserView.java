@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.api.user.view;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.bellintegrator.practice.api.user.model.User;
 
 import java.util.Date;
@@ -29,7 +30,9 @@ public class UserView {
     public UserView(User user) {
         setId(user.getId());
         // Офис
-        setOfficeId(user.getOfficeId());
+        if (user.getOffice() != null) {
+            setOfficeId(user.getOffice().getId());
+        }
         setPosition(user.getPosition());
         // ФИО
         setFirstName(user.getFirstName());
@@ -56,6 +59,7 @@ public class UserView {
 
 
     // getters and setter (autoGenerate)
+
     public Integer getId() {
         return id;
     }
@@ -100,7 +104,8 @@ public class UserView {
         return citizenshipName;
     }
 
-    public Boolean getIsIdentified() {
+    @JsonProperty("isIdentified")
+    public Boolean isIdentified() {
         return isIdentified;
     }
 

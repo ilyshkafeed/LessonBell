@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
     public List<ListView> getList(UserList param) {
         getOffice(param.getOfficeId());
         return dao.getList(param).stream()
-                .map(p -> new ListView(p.getId(), p.getLastName(), p.getFirstName(), p.getMiddleName(), p.getPosition()))
+                .map(p -> new ListView(p.getId(),  p.getFirstName(),p.getLastName(), p.getMiddleName(), p.getPosition()))
                 .collect(Collectors.toList());
     }
 
