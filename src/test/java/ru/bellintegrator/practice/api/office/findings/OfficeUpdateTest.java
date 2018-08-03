@@ -1,6 +1,7 @@
 package ru.bellintegrator.practice.api.office.findings;
 
 import Utilites.Creator;
+import Utilites.ValidateTest;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,9 +13,8 @@ import java.util.Set;
 
 import static org.junit.Assert.*;
 
-public class OfficeUpdateTest {
+public class OfficeUpdateTest extends ValidateTest {
 
-    private static Validator validator;
 
     @Before
     public void setUp() {
@@ -76,13 +76,4 @@ public class OfficeUpdateTest {
     }
 
 
-
-    private boolean validate(Object office, String field) {
-        Set<ConstraintViolation<Object>> violations = validator.validate(office);
-        return violations.stream().noneMatch(item -> item.getPropertyPath().toString().equals(field));
-    }
-    private boolean validate(Object office) {
-        Set<ConstraintViolation<Object>> violations = validator.validate(office);
-        return violations.isEmpty();
-    }
 }
